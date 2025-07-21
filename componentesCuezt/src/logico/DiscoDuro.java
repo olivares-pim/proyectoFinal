@@ -37,6 +37,9 @@ public class DiscoDuro extends Componente {
 		this.tipoConectorDD = tipoConectorDD;
 	}
 	
+	public boolean verificarConector(TarjetaMadre tarjetaMadre) {
+		return this.tipoConectorDD == tarjetaMadre.getTipoConectorDD();
+	}
 	
 
 }

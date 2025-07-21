@@ -27,6 +27,10 @@ public class MemoriasRam extends Componente {
 		this.tipoMemoria = tipoMemoria;
 	}
 	
+	public boolean verificarConector(TarjetaMadre tarjetaMadre) {
+		return this.tipoMemoria == tarjetaMadre.getTipoMemoriaRAM();
+	}
+	
 
 }
 

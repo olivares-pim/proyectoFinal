@@ -37,6 +37,8 @@ public class Microprocesador extends Componente {
 		this.velocidadProcesador = velocidadProcesador;
 	}
 	
-	
+	public boolean verificarConector(TarjetaMadre tarjetaMadre) {
+		return this.tipoConectorSocket == tarjetaMadre.getTipoConectorSocket();
+	}
 
 }
