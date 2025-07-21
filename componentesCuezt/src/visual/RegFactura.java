@@ -17,7 +17,7 @@ public class RegFactura extends JDialog {
 	private JTextField txtCodigo;
 
 	/**
-	 * Launch the application.
+	 * Launch the application
 	 */
 	public static void main(String[] args) {
 		try {

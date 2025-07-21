@@ -20,7 +20,7 @@ public class Principal extends JFrame {
 	private Dimension dim=null;
 
 	/**
-	 * Launch the application.
+	 * Launch the application
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
