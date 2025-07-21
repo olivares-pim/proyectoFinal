@@ -8,9 +8,11 @@ public class Tienda {
 	private ArrayList<Componente> componentes;
 	private ArrayList<Cliente> clientes;
 	private ArrayList<Factura> facturas;
-	private static int generadorComponente;
-	private static int generadorCliente;
-	private static int generadorFactura;
+	private ArrayList<Combo> combos;
+	private static int generadorComponente = 1;
+	private static int generadorCliente = 1;
+	private static int generadorFactura = 1;
+	private static int generadorCombo = 1;
 	private static Tienda tiendaTon = null; //Singleton
 	
 	public static Tienda getInstance() {
