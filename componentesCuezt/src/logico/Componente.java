@@ -1,23 +1,34 @@
 package logico;
 
 public abstract class Componente {
-	protected String precio;
+	
+	protected int id;
+	protected double precio;
 	protected int cantidad;
 	protected String numeroSerie;
 	protected String marca;
 	
-	public Componente(String precio, int cantidad, String numeroSerie, String marca) {
+	protected Componente(int id, double precio, int cantidad, String numeroSerie, String marca) {
+		this.id = id;
 		this.precio = precio;
 		this.cantidad = cantidad;
 		this.numeroSerie = numeroSerie;
 		this.marca = marca;
 	}
+	
+	public int getId() {
+		return id;
+	}
 
-	public String getPrecio() {
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public double getPrecio() {
 		return precio;
 	}
 
-	public void setPrecio(String precio) {
+	public void setPrecio(double precio) {
 		this.precio = precio;
 	}
 
@@ -44,5 +55,7 @@ public abstract class Componente {
 	public void setMarca(String marca) {
 		this.marca = marca;
 	}
-
+	
+	@Override
+	public abstract String toString();
 }

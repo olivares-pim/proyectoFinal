@@ -6,8 +6,8 @@ public class Microprocesador extends Componente {
 	private String tipoConectorSocket;
 	private String velocidadProcesador;
 
-	public Microprocesador(String precio, int cantidad, String numeroSerie, String marca, String modelo, String tipoConectorSocket, String velocidadProcesador) {
-		super(precio, cantidad, numeroSerie, marca);
+	public Microprocesador(int id, double precio, int cantidad, String numeroSerie, String marca, String modelo, String tipoConectorSocket, String velocidadProcesador) {
+		super(id, precio, cantidad, numeroSerie, marca);
 		this.modelo = modelo;
 		this.tipoConectorSocket = tipoConectorSocket;
 		this.velocidadProcesador = velocidadProcesador;
@@ -39,6 +39,11 @@ public class Microprocesador extends Componente {
 	
 	public boolean verificarConector(TarjetaMadre tarjetaMadre) {
 		return this.tipoConectorSocket == tarjetaMadre.getTipoConectorSocket();
+	}
+	
+	@Override
+	public String toString() {
+		return marca + " " + modelo;
 	}
 
 }

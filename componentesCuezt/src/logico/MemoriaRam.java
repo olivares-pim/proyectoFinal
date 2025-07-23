@@ -1,12 +1,12 @@
 package logico;
 
-public class MemoriasRam extends Componente {
+public class MemoriaRam extends Componente {
 	
 	private double cantidadMemoria;
 	private String tipoMemoria;
 
-	public MemoriasRam(String precio, int cantidad, String numeroSerie, String marca, double cantidadMemoria, String tipoMemoria) {
-		super(precio, cantidad, numeroSerie, marca);
+	public MemoriaRam(int id, double precio, int cantidad, String numeroSerie, String marca, double cantidadMemoria, String tipoMemoria) {
+		super(id, precio, cantidad, numeroSerie, marca);
 		this.cantidadMemoria = cantidadMemoria;
 		this.tipoMemoria = tipoMemoria;
 	}
@@ -29,6 +29,11 @@ public class MemoriasRam extends Componente {
 	
 	public boolean verificarConector(TarjetaMadre tarjetaMadre) {
 		return this.tipoMemoria == tarjetaMadre.getTipoMemoriaRAM();
+	}
+	
+	@Override
+	public String toString() {
+		return marca + " " + numeroSerie;
 	}
 	
 

@@ -7,8 +7,8 @@ public class TarjetaMadre extends Componente {
 	private String tipoMemoriaRAM;
 	private String tipoConectorDD;
 
-	public TarjetaMadre(String precio, int cantidad, String numeroSerie, String marca, String modelo, String tipoConectorSocket, String tipoMemoriaRAM, String tipoConectorDD) {
-		super(precio, cantidad, numeroSerie, marca);
+	public TarjetaMadre(int id ,double precio, int cantidad, String numeroSerie, String marca, String modelo, String tipoConectorSocket, String tipoMemoriaRAM, String tipoConectorDD) {
+		super(id, precio, cantidad, numeroSerie, marca);
 		this.modelo = modelo;
 		this.tipoConectorSocket = tipoConectorSocket;
 		this.tipoMemoriaRAM = tipoMemoriaRAM;
@@ -47,6 +47,9 @@ public class TarjetaMadre extends Componente {
 		this.tipoConectorDD = tipoConectorDD;
 	}
 	
+	@Override
+	public String toString() {
+		return marca + " " + modelo;
+	}
 	
-
 }
