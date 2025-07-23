@@ -91,6 +91,78 @@ public class Tienda {
 	    return false;
 	}
 	
+	public ArrayList<TarjetaMadre> getTarjetasMadres() {
+		ArrayList<TarjetaMadre> tarjetasMadres = new ArrayList<TarjetaMadre>();
+		for(Componente componente : componentes) {
+			if(componente instanceof TarjetaMadre) {
+				tarjetasMadres.add((TarjetaMadre)componente);
+			}
+		}
+		return tarjetasMadres;
+	}
+
+	
+	public ArrayList<MemoriaRam> getMemoriasRam() {
+		ArrayList<MemoriaRam> memoriasRam = new ArrayList<MemoriaRam>();
+		for(Componente componente : componentes) {
+			if(componente instanceof MemoriaRam) {
+				memoriasRam.add((MemoriaRam)componente);
+			}
+		}
+		return memoriasRam;
+	}
+	
+	public ArrayList<MemoriaRam> getMemoriasRamCompatibles(TarjetaMadre tarjetaEval){
+		ArrayList<MemoriaRam> memoriasAux = new ArrayList<MemoriaRam>();
+		for(MemoriaRam ram : getMemoriasRam()) {
+			if(ram.verificarConector(tarjetaEval)){
+				memoriasAux.add(ram);
+			}
+		}
+		return memoriasAux;
+	}
+	
+	public ArrayList<Microprocesador> getMicroProcesadores() {
+		ArrayList<Microprocesador> microProcesadores = new ArrayList<Microprocesador>();
+		for(Componente componente : componentes) {
+			if(componente instanceof Microprocesador) {
+				microProcesadores.add((Microprocesador)componente);
+			}
+		}
+		return microProcesadores;
+	}
+	
+	public ArrayList<Microprocesador> getMicroProcesadoresCompatibles(TarjetaMadre tarjetaEval){
+		ArrayList<Microprocesador> microProcesadoresAux = new ArrayList<Microprocesador>();
+		for(Microprocesador mP : getMicroProcesadores()) {
+			if(mP.verificarConector(tarjetaEval)){
+				microProcesadoresAux.add(mP);
+			}
+		}
+		return microProcesadoresAux;
+	}
+	
+	public ArrayList<DiscoDuro> getDiscosDuros(){
+		ArrayList<DiscoDuro> discosDuros = new ArrayList<DiscoDuro>();
+		for(Componente componente : componentes) {
+			if(componente instanceof DiscoDuro) {
+				discosDuros.add((DiscoDuro)componente);
+			}
+		}
+		return discosDuros;
+	}
+	
+	public ArrayList<DiscoDuro> getDiscosDurosCompatibles(TarjetaMadre tarjetaEval){
+		ArrayList<DiscoDuro>discosDurosAux = new ArrayList<DiscoDuro>();
+		for(DiscoDuro dd : getDiscosDuros()) {
+			if(dd.verificarConector(tarjetaEval)) {
+				discosDurosAux.add(dd);
+			}
+		}
+		return discosDurosAux;
+	}
+
+	
 	
 	
 
