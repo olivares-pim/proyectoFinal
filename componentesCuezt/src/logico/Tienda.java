@@ -55,6 +55,15 @@ public class Tienda {
 	    return false;
 	}
 	
+	public Componente getComponente(Componente compBuscado) {
+		for(Componente comp : componentes) {
+			if(compBuscado.getId()==comp.getId()) {
+				return comp;
+			}
+		}
+		return null;
+	}
+	
 	public boolean existeCliente(Cliente clienteBuscado){
         for(Cliente cliente : clientes){
             if(clienteBuscado.getCedula().equalsIgnoreCase(cliente.getCedula())){
@@ -75,7 +84,7 @@ public class Tienda {
 
 	public boolean existeFactura(Factura facturaBuscada){
 	    for(Factura factura : facturas){
-	        if(facturaBuscada.getId().equalsIgnoreCase(factura.getId())){
+	        if(facturaBuscada.getId_factura()==(factura.getId_factura())){
 	            return true;
 	        }
 	    }
@@ -85,10 +94,20 @@ public class Tienda {
 	public boolean agregarFactura(Factura nuevaFactura){
 	    if(!existeFactura(nuevaFactura)){
 	        this.facturas.add(nuevaFactura);
+	        for(Componente comp : nuevaFactura.getComponentesVendidos()) {
+	        	actualizarCantidadProducto(comp);
+	        }
 	        this.generadorFactura++;
 	        return true;
 	    }
 	    return false;
+	}
+
+	public void actualizarCantidadProducto(Componente compVendido) {
+		Componente compAlmacenado = getComponente(compVendido);
+		if(compAlmacenado !=null){
+			compAlmacenado.setCantidad(compAlmacenado.getCantidad()-compVendido.getCantidad());
+			}
 	}
 	
 	public ArrayList<TarjetaMadre> getTarjetasMadres() {
@@ -161,8 +180,6 @@ public class Tienda {
 		}
 		return discosDurosAux;
 	}
-
-	
 	
 	
 
