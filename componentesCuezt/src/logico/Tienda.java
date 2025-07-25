@@ -66,7 +66,7 @@ public class Tienda {
 	
 	public boolean existeCliente(Cliente clienteBuscado){
         for(Cliente cliente : clientes){
-            if(clienteBuscado.getCedula().equalsIgnoreCase(cliente.getCedula())){
+            if(clienteBuscado.getId_cliente()==cliente.getId_cliente()){
                 return true;
             }
         }
@@ -108,6 +108,24 @@ public class Tienda {
 		if(compAlmacenado !=null){
 			compAlmacenado.setCantidad(compAlmacenado.getCantidad()-compVendido.getCantidad());
 			}
+	}
+	
+	public boolean existeCombo(Combo comboEval) {
+		for(Combo combo : combos) {
+			if(combo.getId()==comboEval.getId()) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public boolean agregarcombo (Combo comboNuevo) {
+		if(!existeCombo(comboNuevo)) {
+			this.combos.add(comboNuevo);
+			this.generadorCombo++;
+			return true;
+		}
+		return false;
 	}
 	
 	public ArrayList<TarjetaMadre> getTarjetasMadres() {
