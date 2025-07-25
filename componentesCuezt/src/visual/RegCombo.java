@@ -58,7 +58,7 @@ public class RegCombo extends JDialog {
 		hdds = crearDiscosDuros();
 		//HASTA AQUI
 		
-		setBounds(100, 100, 483, 330);
+		setBounds(100, 100, 666, 521);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
