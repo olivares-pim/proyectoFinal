@@ -1,14 +1,56 @@
 package logico;
 
+import java.util.ArrayList;
+
 public class Factura {
 	
-	private String id;
-
-	public String getId() {
-		// Igual que el getter que hice en cliente, un getter temporal
-		return this.id;
+	private int id_factura;
+	private Cliente cliente;
+	private int fechaPedido;
+	private double precioTotal;
+	private ArrayList<Componente> componentesVendidos;
+	
+	public Factura(int id_factura, Cliente cliente, int fechaPedido, double precioTotal) {
+		
+		this.id_factura = id_factura;
+		this.cliente = cliente;
+		this.fechaPedido = fechaPedido;
+		this.precioTotal = precioTotal;
+		this.componentesVendidos = new ArrayList<>();
+	}
+	public int getId_factura() {
+		return id_factura;
+	}
+	public void setId_factura(int id_factura) {
+		this.id_factura = id_factura;
+	}
+	public Cliente getCliente() {
+		return cliente;
+	}
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+	
+	public int getFechaPedido() {
+		return fechaPedido;
+	}
+	public void setFechaPedido(int fechaPedido) {
+		this.fechaPedido = fechaPedido;
+	}
+	public double getPrecioTotal() {
+		return precioTotal;
+	}
+	public void setPrecioTotal(double precioTotal) {
+		this.precioTotal = precioTotal;
+	}
+	public ArrayList<Componente> getComponentesVendidos() {
+		return componentesVendidos;
+	}
+	
+	private void ingresarComponente(Componente componentaVendido) {
+		componentesVendidos.add(componentaVendido);
 	}
 
+	
 }
-
 
