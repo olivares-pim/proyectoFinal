@@ -9,6 +9,7 @@ public class Factura {
 	private int fechaPedido;
 	private double precioTotal;
 	private ArrayList<Componente> componentesVendidos;
+	private ArrayList<Combo> combosVendidos;
 	
 	public Factura(int id_factura, Cliente cliente, int fechaPedido, double precioTotal) {
 		
@@ -17,6 +18,7 @@ public class Factura {
 		this.fechaPedido = fechaPedido;
 		this.precioTotal = precioTotal;
 		this.componentesVendidos = new ArrayList<>();
+		this.combosVendidos = new ArrayList<>();
 	}
 	public int getId_factura() {
 		return id_factura;
@@ -46,9 +48,16 @@ public class Factura {
 	public ArrayList<Componente> getComponentesVendidos() {
 		return componentesVendidos;
 	}
+	public ArrayList<Combo> getCombosVendidos() {
+		return combosVendidos;
+	}
 	
 	private void ingresarComponente(Componente componentaVendido) {
 		componentesVendidos.add(componentaVendido);
+	}
+	
+	private void ingresarCombo(Combo comboVendido) {
+		combosVendidos.add(comboVendido);
 	}
 
 	
