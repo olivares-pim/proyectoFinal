@@ -97,6 +97,11 @@ public class Tienda {
 	        for(Componente comp : nuevaFactura.getComponentesVendidos()) {
 	        	actualizarCantidadProducto(comp);
 	        }
+	        for(Combo combo : nuevaFactura.getCombosVendidos()) {
+	        	for(Componente comp : combo.getComponentesCombo()) {
+	        		actualizarCantidadProducto(comp);
+	        	}
+	        }
 	        this.generadorFactura++;
 	        return true;
 	    }
