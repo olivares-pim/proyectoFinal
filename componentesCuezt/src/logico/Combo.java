@@ -13,14 +13,14 @@ public class Combo {
 	public Combo(int id, String descripcion, double descuentoPorciento) {
 		this.id = id;
 		this.descripcion = descripcion;
-		this.descuentoPorciento = descuentoPorciento;
+		this.setDescuentoPorciento(descuentoPorciento);
 		this.componentesCombo = new ArrayList<>();
 	}
 	
 	public Combo(int id, String descripcion, TarjetaMadre compCentral, double descuentoPorciento) {
 		this.id = id;
 		this.descripcion = descripcion;
-		this.descuentoPorciento = descuentoPorciento;
+		this.setDescuentoPorciento(descuentoPorciento);
 		this.componentesCombo = new ArrayList<>();
 		this.compCentral = compCentral;
 	}
@@ -49,6 +49,14 @@ public class Combo {
 	}
 	public void ingresarComponente(Componente compNuevo) {
 		this.componentesCombo.add(compNuevo);
+	}
+
+	public double getDescuentoPorciento() {
+		return descuentoPorciento;
+	}
+
+	public void setDescuentoPorciento(double descuentoPorciento) {
+		this.descuentoPorciento = descuentoPorciento;
 	}
 	
 		

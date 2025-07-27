@@ -2,6 +2,9 @@ package logico;
 
 import java.util.ArrayList;
 
+import conexion.ClienteDAO;
+import conexion.ComboDAO;
+
 public class Tienda {
 	
 	
@@ -76,6 +79,7 @@ public class Tienda {
 	public boolean agregarCliente(Cliente nuevoCliente){
         if(!existeCliente(nuevoCliente)){
             this.clientes.add(nuevoCliente);
+            ClienteDAO.agregarCliente(nuevoCliente);
             this.generadorCliente++;
             return true;
         }
@@ -127,6 +131,7 @@ public class Tienda {
 	public boolean agregarcombo (Combo comboNuevo) {
 		if(!existeCombo(comboNuevo)) {
 			this.combos.add(comboNuevo);
+			ComboDAO.agregarCombo(comboNuevo);
 			this.generadorCombo++;
 			return true;
 		}
