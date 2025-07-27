@@ -1,6 +1,7 @@
 package logico;
 
 import java.util.ArrayList;
+import conexion.ComboDAO;
 
 public class Combo {
 	

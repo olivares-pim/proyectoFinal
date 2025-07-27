@@ -130,8 +130,8 @@ public class Tienda {
 	
 	public boolean agregarcombo (Combo comboNuevo) {
 		if(!existeCombo(comboNuevo)) {
+			if(ComboDAO.agregarCombo(comboNuevo))
 			this.combos.add(comboNuevo);
-			ComboDAO.agregarCombo(comboNuevo);
 			this.generadorCombo++;
 			return true;
 		}
