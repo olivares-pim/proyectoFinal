@@ -7,13 +7,15 @@ public abstract class Componente {
 	protected int cantidad;
 	protected String numeroSerie;
 	protected String marca;
+	protected String tipo;
 	
-	protected Componente(int id, double precio, int cantidad, String numeroSerie, String marca) {
+	protected Componente(int id, double precio, int cantidad, String numeroSerie, String marca, String tipo) {
 		this.id = id;
 		this.precio = precio;
 		this.cantidad = cantidad;
 		this.numeroSerie = numeroSerie;
 		this.marca = marca;
+		this.tipo = tipo;
 	}
 	
 	public int getId() {
@@ -55,7 +57,17 @@ public abstract class Componente {
 	public void setMarca(String marca) {
 		this.marca = marca;
 	}
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+
 	
 	@Override
 	public abstract String toString();
-}
+	}
+
+
