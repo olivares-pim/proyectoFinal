@@ -6,8 +6,8 @@ public class DiscoDuro extends Componente {
 	private String capacidadAlmacenamiento;
 	private String tipoConectorDD;
 
-	public DiscoDuro(int id, double precio, int cantidad, String numeroSerie, String marca, String modelo, String capacidadAlmacenamiento, String tipoConectorDD) {
-		super(id, precio, cantidad, numeroSerie, marca);
+	public DiscoDuro(int id, double precio, int cantidad, String numeroSerie, String marca, String tipo, String modelo, String capacidadAlmacenamiento, String tipoConectorDD) {
+		super(id, precio, cantidad, numeroSerie, marca, tipo);
 		this.modelo = modelo;
 		this.capacidadAlmacenamiento = capacidadAlmacenamiento;
 		this.tipoConectorDD = tipoConectorDD;
