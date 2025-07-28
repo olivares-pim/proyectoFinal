@@ -28,4 +28,44 @@ public class ClienteDAO {
 		return resultado;
 		
 	}
+	
+	public static boolean actualizarCliente (Cliente clientes) {
+		Connection conn = Conexion.getInstance().getConexion();
+		boolean resultado = false;
+		try {
+			String sql = "UPDATE clientes SET nombre=?, apellido=?, email=?, telefono=? WHERE cedula=?";
+			PreparedStatement ps= conn.prepareStatement(sql);
+			ps.setString(1, clientes.getNombre());
+			ps.setString(2, clientes.getApellido());
+			ps.setString(3, clientes.getEmail());
+			ps.setString(4, clientes.getTelefono());
+			ps.setString(5, clientes.getCedula());
+			ps.executeUpdate();
+			resultado = true;
+			ps.close();			
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return resultado;
+		
+	}
+
+	public static boolean getCliente (String cedula) {
+		Connection conn = Conexion.getInstance().getConexion();
+		boolean resultado = false;
+		try {
+			String sql = "SELECT * FROM clientes WHERE cedula=?";
+			PreparedStatement ps= conn.prepareStatement(sql);
+			ps.setString(1, cedula);
+			ps.executeQuery();
+			resultado = true;
+			ps.close();			
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return resultado;
+		
+	}
 }
