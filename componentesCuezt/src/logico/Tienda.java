@@ -12,6 +12,7 @@ public class Tienda {
 	private ArrayList<Cliente> clientes;
 	private ArrayList<Factura> facturas;
 	private ArrayList<Combo> combos;
+	private ArrayList<Usuario> usuarios;
 	private static int generadorComponente = 1;
 	private static int generadorCliente = 1;
 	private static int generadorFactura = 1;
@@ -29,6 +30,8 @@ public class Tienda {
 		this.componentes = new ArrayList<>();
 		this.clientes = new ArrayList<>(); 
 		this.facturas = new ArrayList<>();
+		this.usuarios = new ArrayList<>();
+		this.usuarios.add(new Usuario("admin","1234","admin"));
 	}
 	public ArrayList<Componente> getComponentes() {
 		return componentes;
@@ -209,6 +212,38 @@ public class Tienda {
 		return discosDurosAux;
 	}
 	
+	public ArrayList<Usuario> getUsuarios(){
+		return usuarios;
+	}
 	
+	public boolean existeUsuario(Usuario userEval) {
+		for(Usuario user : usuarios) {
+			if(user.getUsername().equals(userEval.getUsername())) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public boolean agregarUsuario(Usuario userNuevo) {
+		if(!existeUsuario(userNuevo)) {
+			usuarios.add(userNuevo);
+			return true;
+		}
+		return false;
+	}
+	
+	public Usuario getUserByUsername(String username) {
+		for(Usuario user : usuarios) {
+			if(user.getUsername().equals(username));
+			return user;
+		}
+		return null;
+	}
+	
+	public boolean login(String username, String password) {
+		Usuario check = getUserByUsername(username);
+		return check.getPassword().equals(password);
+	}
 
 }
