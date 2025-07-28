@@ -5,7 +5,7 @@ public class MemoriaRam extends Componente {
 	private double cantidadMemoria;
 	private String tipoMemoria;
 
-	public MemoriaRam(int id, double precio, int cantidad, String numeroSerie, String marca, String tipo, double cantidadMemoria, String tipoMemoria) {
+	public MemoriaRam(int id, double precio, int cantidad, String numeroSerie, String marca, double cantidadMemoria, String tipoMemoria, String tipo) {
 		super(id, precio, cantidad, numeroSerie, marca, tipo);
 		this.cantidadMemoria = cantidadMemoria;
 		this.tipoMemoria = tipoMemoria;
