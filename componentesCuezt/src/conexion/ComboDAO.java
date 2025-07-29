@@ -143,7 +143,7 @@ public class ComboDAO {
 								componente = new DiscoDuro(idComp, precio, cantidad, numeroSerie, marca, tipo, modelo, "", "");
 								break;
 							case "MemoriaRam":
-								componente = new MemoriaRam(idComp, precio, cantidad, numeroSerie, marca, tipo,0,"");
+								componente = new MemoriaRam(idComp, precio, cantidad, numeroSerie, marca,0,"",tipo);
 								break;
 							case "Microprocesador":
 								componente = new Microprocesador(idComp, precio, cantidad, numeroSerie, marca, tipo, modelo, "", "");
