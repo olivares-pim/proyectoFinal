@@ -18,12 +18,15 @@ import javax.swing.JPasswordField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class Login extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private JTextField txtUser;
 	private JPasswordField pwdPassword;
+	private JLabel lblWarning;
 
 	/**
 	 * Launch the application.
@@ -55,6 +58,14 @@ public class Login extends JDialog {
 		contentPanel.add(lblLogin);
 		
 		txtUser = new JTextField();
+		txtUser.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if(e.getKeyCode()==KeyEvent.VK_ENTER){
+					login();
+				}
+			}
+		});
 		txtUser.setHorizontalAlignment(SwingConstants.CENTER);
 		contentPanel.add(txtUser);
 		txtUser.setColumns(10);
@@ -64,10 +75,18 @@ public class Login extends JDialog {
 		contentPanel.add(lblPassword);
 		
 		pwdPassword = new JPasswordField();
+		pwdPassword.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if(e.getKeyCode()==KeyEvent.VK_ENTER){
+					login();
+				}
+			}
+		});
 		pwdPassword.setHorizontalAlignment(SwingConstants.CENTER);
 		contentPanel.add(pwdPassword);
 		
-		JLabel lblWarning = new JLabel("Usuario o Contrase\u00F1a incorrecta!");
+		lblWarning = new JLabel("Usuario o Contrase\u00F1a incorrecta!");
 		lblWarning.setHorizontalAlignment(SwingConstants.CENTER);
 		lblWarning.setVisible(false);
 		lblWarning.setForeground(Color.RED);
@@ -76,14 +95,7 @@ public class Login extends JDialog {
 		JButton btnLogin = new JButton("Log In");
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(Tienda.getInstance().login(txtUser.getText(), pwdPassword.getText())) {
-					Principal frame = new Principal();
-					dispose();
-					frame.setVisible(true);
-				}else {
-					lblWarning.setVisible(true);
-					clean();
-				}
+				login();
 			}
 		});
 		contentPanel.add(btnLogin);
@@ -92,4 +104,16 @@ public class Login extends JDialog {
 		txtUser.setText("");
 		pwdPassword.setText("");
 	}
+	
+	public void login() {
+		if(Tienda.getInstance().login(txtUser.getText(), pwdPassword.getText())) {
+			Principal frame = new Principal();
+			dispose();
+			frame.setVisible(true);
+		}else {
+			lblWarning.setVisible(true);
+			clean();
+		}
+	}
 }
+
