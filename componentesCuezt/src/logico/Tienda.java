@@ -2,6 +2,7 @@ package logico;
 
 import java.util.ArrayList;
 
+import Excepciones.ObjectAlreadyExistsException;
 import conexion.ClienteDAO;
 import conexion.ComboDAO;
 
@@ -43,22 +44,23 @@ public class Tienda {
 		return facturas;
 	}
 	
-	public boolean existeComponente(Componente componenteBuscado){
-	    for(Componente componente : componentes){
+	public boolean existeComponente(Componente componenteBuscado) {
+		for(Componente componente : componentes){
 	        if(componenteBuscado.getNumeroSerie().equalsIgnoreCase(componente.getNumeroSerie())){
 	            return true;
 	        }
 	    }
 	    return false;
 	}
-
-	public boolean agregarComponente(Componente nuevoComponente){
-	    if(!existeComponente(nuevoComponente)){
-	        this.componentes.add(nuevoComponente);
-	        this.generadorComponente++;
-	        return true;
-	    }
-	    return false;
+	
+	public void agregarComponente (Componente nuevoComponente) throws ObjectAlreadyExistsException{
+	    	if(existeComponente(nuevoComponente)) {
+	    		throw new ObjectAlreadyExistsException("componente");
+	    	} else {
+	    		this.componentes.add(nuevoComponente);
+		        this.generadorComponente++;
+	    	}
+	    
 	}
 	
 	public Componente getComponente(Componente compBuscado) {
@@ -72,21 +74,22 @@ public class Tienda {
 	
 	public boolean existeCliente(Cliente clienteBuscado){
         for(Cliente cliente : clientes){
-            if(clienteBuscado.getId_cliente()==cliente.getId_cliente()){
+            if(clienteBuscado.getCedula().equals(cliente.getCedula())){
                 return true;
             }
         }
         return false;
     }
 	
-	public boolean agregarCliente(Cliente nuevoCliente){
-        if(!existeCliente(nuevoCliente)){
-            this.clientes.add(nuevoCliente);
+	public void agregarCliente(Cliente nuevoCliente) throws ObjectAlreadyExistsException{
+        if(existeCliente(nuevoCliente)){
+        	throw new ObjectAlreadyExistsException("cliente");
+        } else {
+        	this.clientes.add(nuevoCliente);
             ClienteDAO.agregarCliente(nuevoCliente);
             this.generadorCliente++;
-            return true;
         }
-        return false;
+        
     }
 
 	public boolean existeFactura(Factura facturaBuscada){
@@ -98,9 +101,11 @@ public class Tienda {
 	    return false;
 	}
 	
-	public boolean agregarFactura(Factura nuevaFactura){
-	    if(!existeFactura(nuevaFactura)){
-	        this.facturas.add(nuevaFactura);
+	public void agregarFactura(Factura nuevaFactura) throws ObjectAlreadyExistsException{
+	    if(existeFactura(nuevaFactura)){
+	    	throw new ObjectAlreadyExistsException("factura");
+	    } else {
+	    	this.facturas.add(nuevaFactura);
 	        for(Componente comp : nuevaFactura.getComponentesVendidos()) {
 	        	actualizarCantidadProducto(comp);
 	        }
@@ -110,9 +115,9 @@ public class Tienda {
 	        	}
 	        }
 	        this.generadorFactura++;
-	        return true;
+	        
 	    }
-	    return false;
+	    
 	}
 
 	public void actualizarCantidadProducto(Componente compVendido) {
@@ -131,14 +136,15 @@ public class Tienda {
 		return false;
 	}
 	
-	public boolean agregarcombo (Combo comboNuevo) {
-		if(!existeCombo(comboNuevo)) {
+	public void agregarcombo (Combo comboNuevo) throws ObjectAlreadyExistsException {
+		if(existeCombo(comboNuevo)) {
+			throw new ObjectAlreadyExistsException("combo");
+		} else {
 			if(ComboDAO.agregarCombo(comboNuevo))
-			this.combos.add(comboNuevo);
-			this.generadorCombo++;
-			return true;
+				this.combos.add(comboNuevo);
+				this.generadorCombo++;
 		}
-		return false;
+		
 	}
 	
 	public ArrayList<TarjetaMadre> getTarjetasMadres() {
@@ -225,12 +231,12 @@ public class Tienda {
 		return false;
 	}
 	
-	public boolean agregarUsuario(Usuario userNuevo) {
-		if(!existeUsuario(userNuevo)) {
+	public void agregarUsuario(Usuario userNuevo) throws ObjectAlreadyExistsException {
+		if(existeUsuario(userNuevo)) {
+			throw new ObjectAlreadyExistsException("nombre de usuario");			
+		} else {
 			usuarios.add(userNuevo);
-			return true;
 		}
-		return false;
 	}
 	
 	public Usuario getUserByUsername(String username) {
