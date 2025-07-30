@@ -72,8 +72,25 @@ public class Principal extends JFrame {
 
                 comboBox.addActionListener(ev -> {
                     String seleccion = (String) comboBox.getSelectedItem();
-                    JOptionPane.showMessageDialog(Principal.this, "Seleccionaste: " + seleccion);
-                });
+                    if ("Disco Duro".equalsIgnoreCase(seleccion)) {
+                        RegDiscoDuro regDiscoDuro = new RegDiscoDuro();
+						regDiscoDuro.setModal(true);
+						regDiscoDuro.setVisible(true);
+                    } else if ("Microprocesador".equalsIgnoreCase(seleccion)) {
+                        RegMicroprocesador regMicroprocesador = new RegMicroprocesador();
+                        regMicroprocesador.setModal(true);
+                        regMicroprocesador.setVisible(true);
+                    	
+                    } else if ("Memoria RAM".equalsIgnoreCase(seleccion)) {
+                    	RegMemoriaRAM regMemoriaRAM = new RegMemoriaRAM();
+						regMemoriaRAM.setModal(true);
+						regMemoriaRAM.setVisible(true);
+                    }
+                      else if ("Tarjeta Madre".equalsIgnoreCase(seleccion)) {
+						RegTarjetaMadre regTarjetaMadre = new RegTarjetaMadre();
+						regTarjetaMadre.setModal(true);
+						regTarjetaMadre.setVisible(true);
+                    }});
 
                 panelContenido.revalidate();
                 panelContenido.repaint();
