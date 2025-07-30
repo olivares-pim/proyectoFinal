@@ -68,7 +68,7 @@ public class RegClientes extends JDialog {
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		
-		lblCodigo = new JLabel("Código");
+		lblCodigo = new JLabel("Codigo");
 		lblCodigo.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblCodigo.setBounds(18, 16, 61, 16);
 		contentPanel.add(lblCodigo);
@@ -95,12 +95,12 @@ public class RegClientes extends JDialog {
 		txtNombre.setBounds(386, 11, 100, 26);
 		contentPanel.add(txtNombre);
 		
-		lblCedula = new JLabel("Cédula");
+		lblCedula = new JLabel("Cedula");
 		lblCedula.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblCedula.setBounds(175, 16, 45, 16);
 		contentPanel.add(lblCedula);
 		
-		JLabel lblTelefono = new JLabel("Teléfono");
+		JLabel lblTelefono = new JLabel("Telefono");
 		lblTelefono.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblTelefono.setBounds(386, 49, 58, 16);
 		contentPanel.add(lblTelefono);

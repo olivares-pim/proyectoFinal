@@ -313,34 +313,34 @@ public class Tienda {
 		    ArrayList<Cliente> clientes = new ArrayList<>();
 		    
 		    // Cliente 1 - Profesional TI
-		    clientes.add(new Cliente(1, "001-1234567-8", "Juan", "P�rez", "juan.perez@email.com", "809-555-0101"));
+		    clientes.add(new Cliente(1, "001-1234567-8", "Juan", "Perez", "juan.perez@email.com", "809-555-0101"));
 		    
 		    // Cliente 2 - Estudiante Universitario
-		    clientes.add(new Cliente(2, "002-2345678-9", "Mar�a", "Garc�a", "maria.garcia@universidad.edu", "809-555-0202"));
+		    clientes.add(new Cliente(2, "002-2345678-9", "Maria", "Garcia", "maria.garcia@universidad.edu", "809-555-0202"));
 		    
 		    // Cliente 3 - Empresario
-		    clientes.add(new Cliente(3, "003-3456789-0", "Carlos", "Rodr�guez", "c.rodriguez@empresa.com", "809-555-0303"));
+		    clientes.add(new Cliente(3, "003-3456789-0", "Carlos", "Rodriguez", "c.rodriguez@empresa.com", "809-555-0303"));
 		    
 		    // Cliente 4 - Dise�ador Gr�fico
-		    clientes.add(new Cliente(4, "004-4567890-1", "Ana", "Mart�nez", "ana.design@creative.com", "809-555-0404"));
+		    clientes.add(new Cliente(4, "004-4567890-1", "Ana", "Martinez", "ana.design@creative.com", "809-555-0404"));
 		    
 		    // Cliente 5 - Streamer/Gamer
-		    clientes.add(new Cliente(5, "005-5678901-2", "Luis", "Hern�ndez", "luis.gamer@stream.tv", "829-555-0505"));
+		    clientes.add(new Cliente(5, "005-5678901-2", "Luis", "Hernandez", "luis.gamer@stream.tv", "829-555-0505"));
 		    
 		    // Cliente 6 - Profesor
-		    clientes.add(new Cliente(6, "006-6789012-3", "Sof�a", "L�pez", "profe.sofia@escuela.edu", "809-555-0606"));
+		    clientes.add(new Cliente(6, "006-6789012-3", "Sofia", "Lopez", "profe.sofia@escuela.edu", "809-555-0606"));
 		    
 		    // Cliente 7 - M�dico
-		    clientes.add(new Cliente(7, "007-7890123-4", "Roberto", "S�nchez", "dr.sanchez@clinica.com", "829-555-0707"));
+		    clientes.add(new Cliente(7, "007-7890123-4", "Roberto", "Sanchez", "dr.sanchez@clinica.com", "829-555-0707"));
 		    
 		    // Cliente 8 - Peque�o Empresario
-		    clientes.add(new Cliente(8, "008-8901234-5", "Patricia", "D�az", "paty@negocio.local", "809-555-0808"));
+		    clientes.add(new Cliente(8, "008-8901234-5", "Patricia", "Diaz", "paty@negocio.local", "809-555-0808"));
 		    
 		    // Cliente 9 - Estudiante de Secundaria
-		    clientes.add(new Cliente(9, "009-9012345-6", "Miguel", "Fern�ndez", "mike.f@estudiante.edu", "829-555-0909"));
+		    clientes.add(new Cliente(9, "009-9012345-6", "Miguel", "Fernandez", "mike.f@estudiante.edu", "829-555-0909"));
 		    
 		    // Cliente 10 - Jubilado
-		    clientes.add(new Cliente(10, "010-0123456-7", "Ramona", "G�mez", "ramona.gomez@jubilada.com", "809-555-1010"));
+		    clientes.add(new Cliente(10, "010-0123456-7", "Ramona", "Gomez", "ramona.gomez@jubilada.com", "809-555-1010"));
 		    
 		    return clientes;
 		}

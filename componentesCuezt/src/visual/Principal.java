@@ -24,10 +24,7 @@ public class Principal extends JFrame {
         panelMenu.setLayout(new GridLayout(5, 1));
         panelMenu.setBackground(Color.LIGHT_GRAY);
         panelMenu.setPreferredSize(new Dimension(160, getHeight()));
-
-        // Botones del menu
-        JButton btnHome = new JButton("Home");
-        JButton btnFactura = new JButton("Facturas");
+        JButton btnFactura = new JButton("Generar Factura");
         btnFactura.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		RegFactura fact = new RegFactura();
@@ -36,12 +33,26 @@ public class Principal extends JFrame {
         	}
         });
         JButton btnClientes = new JButton("Clientes");
+        btnClientes.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		RegClientes regCliente = new RegClientes();
+        		regCliente.setModal(true);
+        		regCliente.setVisible(true);
+        	}
+        });
         JButton btnComponentes = new JButton("Componentes");
         JButton btnCombos = new JButton("Combos");
-
-        // Agregar botones al panel del menu
-        panelMenu.add(btnHome);
         panelMenu.add(btnFactura);
+        
+        JButton btnVerFacturas = new JButton("Ver Facturas");
+        btnVerFacturas.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		ListarFactura listFact = new ListarFactura();
+        		listFact.setModal(true);
+        		listFact.setVisible(true);
+        	}
+        });
+        panelMenu.add(btnVerFacturas);
         panelMenu.add(btnClientes);
         panelMenu.add(btnComponentes);
         panelMenu.add(btnCombos);
@@ -52,12 +63,6 @@ public class Principal extends JFrame {
         JLabel inicio = new JLabel("Bienvenido a la Tienda", SwingConstants.CENTER);
         inicio.setFont(new Font("Arial", Font.BOLD, 20));
         panelContenido.add(inicio, BorderLayout.CENTER);
-
-        // Acciones de los botones
-        btnHome.addActionListener(e -> cambiarVista("Bienvenido a la Tienda"));
-        
-        btnClientes.addActionListener(e -> cambiarVista("Gestión de Clientes"));
-        btnCombos.addActionListener(e -> cambiarVista("Sección de Combos"));
 
         btnComponentes.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
