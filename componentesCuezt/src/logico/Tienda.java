@@ -81,6 +81,15 @@ public class Tienda {
 		return null;
 	}
 	
+	public Componente getComponentePorId(int id) {
+	    for (Componente componente : componentes) {
+	        if (componente.getId() == id) {
+	            return componente;
+	        }
+	    }
+	    return null;
+	}
+	
 	public boolean existeCliente(Cliente clienteBuscado){
         for(Cliente cliente : clientes){
             if(clienteBuscado.getCedula().equals(cliente.getCedula())){
@@ -154,6 +163,15 @@ public class Tienda {
 				this.generadorCombo++;
 		}
 		
+	}
+	
+	public Combo getComboPorId(int id) {
+	    for (Combo combo : combos) {
+	        if (combo.getId() == id) {
+	            return combo;
+	        }
+	    }
+	    return null;
 	}
 	
 	public ArrayList<TarjetaMadre> getTarjetasMadres() {
