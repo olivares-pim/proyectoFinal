@@ -51,12 +51,7 @@ public class RegCombo extends JDialog {
 	 * Create the dialog.
 	 */
 	public RegCombo() {
-		//BORRAR ESTA PARTE
-		tarjetasMadres = crearTarjetasMadre();
-		rams = crearMemoriasRAM();
-		cpus = crearMicroprocesadores();
-		hdds = crearDiscosDuros();
-		//HASTA AQUI
+	
 		
 		setBounds(100, 100, 666, 521);
 		getContentPane().setLayout(new BorderLayout());
@@ -195,102 +190,5 @@ public class RegCombo extends JDialog {
 		}
 	}
 	
-	//BORRAR ESTO ANTES DE TERMINAR PROYECTO ESTO ES PARA PRUEBAS TAMBIEN INCLUIR LAS LINEAS DEBAJS DEL INCIO DEL CONSTRUCTOR
-	public ArrayList<TarjetaMadre> crearTarjetasMadre() {
-	    ArrayList<TarjetaMadre> tarjetas = new ArrayList<>();
-	    
-	    // Tarjeta Madre 1 - AMD High-End
-	    tarjetas.add(new TarjetaMadre(1, 299.99, 10, "TM-ASUS-001", "ASUS", "ROG Crosshair VIII", "AM4", "DDR4", "M.2 NVMe","Tarjeta Madre"));
-	    
-	    // Tarjeta Madre 2 - Intel Mid-Range
-	    tarjetas.add(new TarjetaMadre(2, 189.99, 15, "TM-GIGA-002", "Gigabyte", "B660 AORUS", "LGA1700", "DDR5", "SATA III","Tarjeta Madre"));
-	    
-	    // Tarjeta Madre 3 - AMD Budget
-	    tarjetas.add(new TarjetaMadre(3, 119.99, 20, "TM-MSI-003", "MSI", "B550M PRO", "AM4", "DDR4", "M.2 SATA","Tarjeta Madre"));
-	    
-	    // Tarjeta Madre 4 - Intel Server
-	    tarjetas.add(new TarjetaMadre(4, 399.99, 5, "TM-ASROCK-004", "ASRock", "X570D4U", "LGA1200", "DDR4 ECC", "U.2","Tarjeta Madre"));
-	    
-	    // Tarjeta Madre 5 - Intel High-End
-	    tarjetas.add(new TarjetaMadre(5, 259.99, 8, "TM-ASUS-005", "ASUS", "PRIME Z790", "LGA1700", "DDR5", "M.2 NVMe","Tarjeta Madre"));
-	    
-	    return tarjetas;
-	}
 	
-	public ArrayList<Microprocesador> crearMicroprocesadores() {
-	    ArrayList<Microprocesador> cpus = new ArrayList<>();
-	    
-	    // Compatibles con TM-ASUS-001 (AM4)
-	    cpus.add(new Microprocesador(1, 449.99, 12, "CPU-AMD-001", "AMD", "Ryzen 9 5950X", "AM4", "4.9GHz","Microprocesador"));
-	    cpus.add(new Microprocesador(2, 299.99, 18, "CPU-AMD-002", "AMD", "Ryzen 7 5800X", "AM4", "4.7GHz","Microprocesador"));
-	    
-	    // Compatibles con TM-GIGA-002 (LGA1700)
-	    cpus.add(new Microprocesador(3, 289.99, 15, "CPU-INTEL-003", "Intel", "Core i5-13600K", "LGA1700", "5.1GHz","Microprocesador"));
-	    cpus.add(new Microprocesador(4, 399.99, 10, "CPU-INTEL-004", "Intel", "Core i7-13700K", "LGA1700", "5.4GHz","Microprocesador"));
-	    
-	    // Compatibles con TM-MSI-003 (AM4)
-	    cpus.add(new Microprocesador(5, 199.99, 20, "CPU-AMD-005", "AMD", "Ryzen 5 5600X", "AM4", "4.6GHz","Microprocesador"));
-	    cpus.add(new Microprocesador(6, 159.99, 25, "CPU-AMD-006", "AMD", "Ryzen 5 5500", "AM4", "4.2GHz","Microprocesador"));
-	    
-	    // Compatibles con TM-ASROCK-004 (LGA1200)
-	    cpus.add(new Microprocesador(7, 229.99, 8, "CPU-INTEL-007", "Intel", "Core i5-11400", "LGA1200", "4.4GHz","Microprocesador"));
-	    cpus.add(new Microprocesador(8, 179.99, 12, "CPU-INTEL-008", "Intel", "Core i3-10100", "LGA1200", "4.3GHz","Microprocesador"));
-	    
-	    // Compatibles con TM-ASUS-005 (LGA1700)
-	    cpus.add(new Microprocesador(9, 589.99, 5, "CPU-INTEL-009", "Intel", "Core i9-13900K", "LGA1700", "5.8GHz","Microprocesador"));
-	    cpus.add(new Microprocesador(10, 349.99, 15, "CPU-INTEL-010", "Intel", "Core i5-13600KF", "LGA1700", "5.1GHz","Microprocesador"));
-	    
-	    return cpus;
-	}
-	
-	public ArrayList<DiscoDuro> crearDiscosDuros() {
-	    ArrayList<DiscoDuro> discos = new ArrayList<>();
-	    
-	    // Compatibles con TM-ASUS-001 (M.2 NVMe)
-	    discos.add(new DiscoDuro(1, 129.99, 20, "DD-SAMSUNG-001", "Samsung", "980 Pro", "1TB", "M.2 NVMe","Disco Duro"));
-	    discos.add(new DiscoDuro(2, 89.99, 25, "DD-WD-002", "WD", "Black SN770", "500GB", "M.2 NVMe","Disco Duro"));
-	    
-	    // Compatibles con TM-GIGA-002 (SATA III)
-	    discos.add(new DiscoDuro(3, 49.99, 30, "DD-SEAGATE-003", "Seagate", "BarraCuda", "2TB", "SATA III","Disco Duro"));
-	    discos.add(new DiscoDuro(4, 59.99, 28, "DD-TOSHIBA-004", "Toshiba", "P300", "1TB", "SATA III","Disco Duro"));
-	    
-	    // Compatibles con TM-MSI-003 (M.2 SATA)
-	    discos.add(new DiscoDuro(5, 79.99, 22, "DD-CRUCIAL-005", "Crucial", "MX500", "1TB", "M.2 SATA","Disco Duro"));
-	    discos.add(new DiscoDuro(6, 69.99, 18, "DD-KINGSTON-006", "Kingston", "A400", "480GB", "M.2 SATA","Disco Duro"));
-	    
-	    // Compatibles con TM-ASROCK-004 (U.2)
-	    discos.add(new DiscoDuro(7, 199.99, 10, "DD-INTEL-007", "Intel", "Optane 905P", "480GB", "U.2","Disco Duro"));
-	    discos.add(new DiscoDuro(8, 249.99, 8, "DD-SAMSUNG-008", "Samsung", "PM983", "960GB", "U.2","Disco Duro"));
-	    
-	    // Compatibles con TM-ASUS-005 (M.2 NVMe)
-	    discos.add(new DiscoDuro(9, 159.99, 15, "DD-CORSAIR-009", "Corsair", "MP600 Pro", "1TB", "M.2 NVMe","Disco Duro"));
-	    discos.add(new DiscoDuro(10, 119.99, 20, "DD-SABRENT-010", "Sabrent", "Rocket 4", "1TB", "M.2 NVMe","Disco Duro"));
-	    
-	    return discos;
-	}
-	public ArrayList<MemoriaRam> crearMemoriasRAM() {
-	    ArrayList<MemoriaRam> rams = new ArrayList<>();
-	    
-	    // Compatibles con TM-ASUS-001 (DDR4)
-	    rams.add(new MemoriaRam(1, 89.99, 25, "RAM-CORSAIR-001", "Corsair", 16, "DDR4","Memoria RAM"));
-	    rams.add(new MemoriaRam(2, 129.99, 20, "RAM-GSKILL-002", "G.Skill", 32, "DDR4","Memoria RAM"));
-	    
-	    // Compatibles con TM-GIGA-002 (DDR5)
-	    rams.add(new MemoriaRam(3, 149.99, 18, "RAM-KINGSTON-003", "Kingston", 16, "DDR5","Memoria RAM"));
-	    rams.add(new MemoriaRam(4, 279.99, 12, "RAM-CORSAIR-004", "Corsair", 32, "DDR5","Memoria RAM"));
-	    
-	    // Compatibles con TM-MSI-003 (DDR4)
-	    rams.add(new MemoriaRam(5, 69.99, 30, "RAM-CRUCIAL-005", "Crucial", 8, "DDR4","Memoria RAM"));
-	    rams.add(new MemoriaRam(6, 119.99, 22, "RAM-TEAM-006", "Team Group", 16, "DDR4","Memoria RAM"));
-	    
-	    // Compatibles con TM-ASROCK-004 (DDR4 ECC)
-	    rams.add(new MemoriaRam(7, 129.99, 15, "RAM-SAMSUNG-007", "Samsung", 16, "DDR4 ECC","Memoria RAM"));
-	    rams.add(new MemoriaRam(8, 229.99, 10, "RAM-MICRON-008", "Micron", 32, "DDR4 ECC","Memoria RAM"));
-	    
-	    // Compatibles con TM-ASUS-005 (DDR5)
-	    rams.add(new MemoriaRam(9, 169.99, 20, "RAM-GSKILL-009", "G.Skill", 16, "DDR5","Memoria RAM"));
-	    rams.add(new MemoriaRam(10, 199.99, 15, "RAM-KINGSTON-010", "Kingston", 16, "DDR5","Memoria RAM"));
-	    
-	    return rams;
-	}
 }
