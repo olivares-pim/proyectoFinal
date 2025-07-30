@@ -6,6 +6,7 @@ import java.awt.FlowLayout;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
@@ -32,6 +33,8 @@ public class RegFactura extends JDialog {
 	private JTable tblDetalleFactura;
 	private DefaultTableModel modelo;
 	private Object [] row;
+	private JComboBox<Combo> cboCombo;
+	private JSpinner spnCombo;
 
 	/**
 	 * Launch the application
@@ -65,6 +68,7 @@ public class RegFactura extends JDialog {
 		contentPanel.add(lblCodigo);
 		
 		txtCodigo = new JTextField();
+		txtCodigo.setText(String.valueOf(Tienda.generadorFactura));
 		txtCodigo.setEditable(false);
 		txtCodigo.setBounds(116, 12, 86, 20);
 		contentPanel.add(txtCodigo);
@@ -78,11 +82,11 @@ public class RegFactura extends JDialog {
 		cboCliente.setBounds(116, 43, 153, 20);
 		contentPanel.add(cboCliente);
 		
-		//Agregar todos los clientes al combobox
-//		cboCliente.addItem(null);
-//		for(Cliente cliente : Tienda.getInstance().getClientes()) {
-//			cboCliente.addItem(cliente);
-//		}
+//		Agregar todos los clientes al combobox
+		cboCliente.addItem(null);
+		for(Cliente cliente : Tienda.getInstance().getClientes()) {
+			cboCliente.addItem(cliente);
+		}
 		
 		JLabel lblComponente = new JLabel("Componente:");
 		lblComponente.setBounds(312, 15, 78, 14);
@@ -106,12 +110,22 @@ public class RegFactura extends JDialog {
 		btnAgregarComponente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
+				Componente aux = (Componente) cboComponente.getSelectedItem();
+				if(aux == null) {
+					return;
+				}
+				row = new Object[tblDetalleFactura.getColumnCount()];
+				row[0]= aux.getId();
+				row[1]= aux.toString();
+				row[2]= spnComponente.getValue();
+				row[3]= aux.getPrecio();
+				modelo.addRow(row);
 			}
 		});
 		btnAgregarComponente.setBounds(702, 11, 89, 23);
 		contentPanel.add(btnAgregarComponente);
 		
-		JComboBox<Combo> cboCombo = new JComboBox<Combo>();
+		cboCombo = new JComboBox<Combo>();
 		cboCombo.setBounds(400, 43, 236, 20);
 		contentPanel.add(cboCombo);
 		
@@ -125,7 +139,7 @@ public class RegFactura extends JDialog {
 		lblCombo.setBounds(312, 46, 78, 14);
 		contentPanel.add(lblCombo);
 		
-		JSpinner spnCombo = new JSpinner();
+		spnCombo = new JSpinner();
 		spnCombo.setBounds(646, 43, 46, 20);
 		contentPanel.add(spnCombo);
 		
@@ -134,12 +148,15 @@ public class RegFactura extends JDialog {
 		contentPanel.add(btnAgregarCombo);
 		
 		tblDetalleFactura = new JTable();
-		tblDetalleFactura.setBounds(10, 77, 827, 330);
 		modelo = new DefaultTableModel();
-		String [] headers = {"Codigo","Nombre","Cantidad","Precio"};
+		String[] headers = {"ID", "Nombre", "Cantidad", "Precio"};
 		modelo.setColumnIdentifiers(headers);
 		tblDetalleFactura.setModel(modelo);
-		contentPanel.add(tblDetalleFactura);
+
+		JScrollPane scrollPane = new JScrollPane(tblDetalleFactura);
+		scrollPane.setBounds(10, 77, 827, 330);
+		contentPanel.add(scrollPane);
+		
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
