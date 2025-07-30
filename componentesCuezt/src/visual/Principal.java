@@ -7,13 +7,17 @@ import java.awt.event.*;
 public class Principal extends JFrame {
 
     private JPanel panelContenido;
+    private Dimension dim=null;
 
     public Principal() {
         setTitle("Tienda Tecnológica");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100, 800, 500);
+        //setBounds(100, 100, 800, 500);
         setLocationRelativeTo(null);
         setLayout(new BorderLayout());
+        dim = getToolkit().getScreenSize();
+		setSize(dim.width/2,dim.height/2);
+		setLocationRelativeTo(null);
 
         // Panel lateral con botones
         JPanel panelMenu = new JPanel();
@@ -21,14 +25,14 @@ public class Principal extends JFrame {
         panelMenu.setBackground(Color.LIGHT_GRAY);
         panelMenu.setPreferredSize(new Dimension(160, getHeight()));
 
-        // Botones del men�
+        // Botones del menu
         JButton btnHome = new JButton("Home");
         JButton btnVentas = new JButton("Ventas");
         JButton btnClientes = new JButton("Clientes");
         JButton btnComponentes = new JButton("Componentes");
         JButton btnCombos = new JButton("Combos");
 
-        // Agregar botones al panel del men�
+        // Agregar botones al panel del menu
         panelMenu.add(btnHome);
         panelMenu.add(btnVentas);
         panelMenu.add(btnClientes);
@@ -64,11 +68,11 @@ public class Principal extends JFrame {
         panelContenido.repaint();
     }
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            Principal ventana = new Principal();
-            ventana.setVisible(true);
-        });
-    }
+//    public static void main(String[] args) {
+//        SwingUtilities.invokeLater(() -> {
+//            Principal ventana = new Principal();
+//            ventana.setVisible(true);
+//        });
+//    }
 }
 

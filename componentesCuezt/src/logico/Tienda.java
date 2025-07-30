@@ -242,18 +242,18 @@ public class Tienda {
 	
 	public Usuario getUserByUsername(String username) {
 		for(Usuario user : usuarios) {
-			if(user.getUsername().equals(username));
+			if(user.getUsername().equals(username)) {
 			return user;
+			}
 		}
 		return null;
 	}
 
 	public boolean login(String username, String password) {
 		Usuario user = getUserByUsername(username);
-		if(user!=null) {
-			return user.getUsername().equals(username)&&user.getPassword().equals(password);
+		if(user!=null && user.getUsername().equals(username)&&user.getPassword().equals(password)) {
+			return true;
 		}
 		return false;
 	}
-
 }
