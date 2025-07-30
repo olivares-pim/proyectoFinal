@@ -10,12 +10,15 @@ import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
+import Excepciones.ObjectAlreadyExistsException;
 import logico.Cliente;
 import logico.Combo;
 import logico.Componente;
+import logico.Factura;
 import logico.Tienda;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -36,7 +39,8 @@ public class RegFactura extends JDialog {
 	private Object [] row;
 	private JComboBox<Combo> cboCombo;
 	private JSpinner spnCombo;
-	private JLabel lblTotalCalculado; 
+	private JLabel lblTotalCalculado;
+	private JButton btnFacturar;
 
 	/**
 	 * Launch the application
@@ -111,9 +115,10 @@ public class RegFactura extends JDialog {
 		JButton btnAgregarComponente = new JButton("Agregar");
 		btnAgregarComponente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				cboCombo.setSelectedIndex(0);
 				Componente aux = (Componente) cboComponente.getSelectedItem();
 				if(aux == null) {return;}
+				
 				int cantidadCompNuevo = (int) spnComponente.getValue();
 		        if (cantidadCompNuevo <= 0) return;
 		        boolean found = false;
@@ -126,7 +131,6 @@ public class RegFactura extends JDialog {
 		                break;
 		            }
 		        }
-		        
 		        if (!found) {
 				row = new Object[tblDetalleFactura.getColumnCount()];
 				row[0]= aux.getId();
@@ -161,6 +165,35 @@ public class RegFactura extends JDialog {
 		contentPanel.add(spnCombo);
 		
 		JButton btnAgregarCombo = new JButton("Agregar");
+		btnAgregarCombo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cboComponente.setSelectedIndex(0);
+				Combo aux = (Combo) cboCombo.getSelectedItem();
+				if(aux == null) {return;}
+				int cantidadComboNuevo = (int) spnCombo.getValue();
+		        if (cantidadComboNuevo <= 0) return;
+		        boolean found = false;
+		        for (int i = 0; i < modelo.getRowCount(); i++) {
+		            int idEval = (int) modelo.getValueAt(i, 0);
+		            if (idEval == aux.getId()) {
+		                int cantidadComboEncontrado = (int) modelo.getValueAt(i, 2);
+		                modelo.setValueAt(cantidadComboEncontrado + cantidadComboNuevo, i, 2);
+		                found = true;
+		                break;
+		            }
+		        }
+		        if (!found) {
+				row = new Object[tblDetalleFactura.getColumnCount()];
+				row[0]= aux.getId();
+				row[1]= aux.toString();
+				row[2]= spnCombo.getValue();
+				row[3]= aux.getPrecio();
+				modelo.addRow(row);
+				}
+		        spnCombo.setValue(1);
+		        calcularTotal();
+			}
+		});
 		btnAgregarCombo.setBounds(702, 42, 89, 23);
 		contentPanel.add(btnAgregarCombo);
 		
@@ -188,15 +221,76 @@ public class RegFactura extends JDialog {
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				JButton okButton = new JButton("OK");
-				okButton.setActionCommand("OK");
-				buttonPane.add(okButton);
-				getRootPane().setDefaultButton(okButton);
+				btnFacturar = new JButton("Facturar");
+				btnFacturar.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						 if(!lblTotalCalculado.getText().equals("$0.00")) {
+					            Cliente cliente = (Cliente) cboCliente.getSelectedItem();
+					            if (cliente == null) {
+					                JOptionPane.showMessageDialog(RegFactura.this, 
+					                    "Seleccione un cliente", 
+					                    "Error", 
+					                    JOptionPane.ERROR_MESSAGE);
+					                return;
+					            }
+					            int fechaPedido = (int) (System.currentTimeMillis() / 1000);
+					            double precioTotal = Double.parseDouble(lblTotalCalculado.getText().substring(1));
+					            Factura factura = new Factura(
+					                Tienda.generadorFactura,
+					                cliente,
+					                fechaPedido,
+					                precioTotal
+					            );
+					            for (int i = 0; i < modelo.getRowCount(); i++) {
+					                int id = (Integer) modelo.getValueAt(i, 0);
+					                String nombre = (String) modelo.getValueAt(i, 1);
+					                int cantidad = (Integer) modelo.getValueAt(i, 2);
+					                double precio = (Double) modelo.getValueAt(i, 3);
+					                if(nombre.contains("Combo")) {
+					                	Combo combo = Tienda.getInstance().getComboPorId(id);
+					                    if (combo != null) {
+					                        for (int it = 0; it < cantidad; it++) {
+					                            factura.ingresarCombo(combo);
+					                        }
+					                    } else {
+					                    	Componente componente = Tienda.getInstance().getComponentePorId(id);
+					                        if (componente != null) {
+					                            for (int it = 0; it < cantidad; it++) {
+					                                factura.ingresarComponente(componente);
+					                            }
+						                    }
+						                };
+						            }
+					            }
+					            try {
+					                Tienda.getInstance().agregarFactura(factura);
+					                JOptionPane.showMessageDialog(RegFactura.this, 
+					                    "Factura creada exitosamente", 
+					                    "Éxito", 
+					                    JOptionPane.INFORMATION_MESSAGE);
+					                dispose();
+					            } catch (ObjectAlreadyExistsException ex) {
+					                JOptionPane.showMessageDialog(RegFactura.this, 
+					                    "Error al crear la factura: " + ex.getMessage(), 
+					                    "Error", 
+					                    JOptionPane.ERROR_MESSAGE);
+					            }
+						}
+					 }
+				});
+				btnFacturar.setActionCommand("OK");
+				buttonPane.add(btnFacturar);
+				getRootPane().setDefaultButton(btnFacturar);
 			}
 			{
-				JButton cancelButton = new JButton("Cancel");
-				cancelButton.setActionCommand("Cancel");
-				buttonPane.add(cancelButton);
+				JButton btnCancelar = new JButton("Cancelar");
+				btnCancelar.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						dispose();
+					}
+				});
+				btnCancelar.setActionCommand("Cancel");
+				buttonPane.add(btnCancelar);
 			}
 		}
 	}
