@@ -12,7 +12,6 @@ public class Principal extends JFrame {
     public Principal() {
         setTitle("Tienda Tecnológica");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        //setBounds(100, 100, 800, 500);
         setLocationRelativeTo(null);
         setLayout(new BorderLayout());
         dim = getToolkit().getScreenSize();
