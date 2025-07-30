@@ -42,6 +42,13 @@ public class Principal extends JFrame {
         });
         JButton btnComponentes = new JButton("Componentes");
         JButton btnCombos = new JButton("Combos");
+        btnCombos.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		RegCombo regCombo = new RegCombo();
+        		regCombo.setModal(true);
+        		regCombo.setVisible(true);
+        	}
+        });
         panelMenu.add(btnFactura);
         
         JButton btnVerFacturas = new JButton("Ver Facturas");
