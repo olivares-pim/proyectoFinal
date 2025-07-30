@@ -303,7 +303,7 @@ public class Tienda {
 		    // Cliente 3 - Empresario
 		    clientes.add(new Cliente(3, "003-3456789-0", "Carlos", "Rodríguez", "c.rodriguez@empresa.com", "809-555-0303"));
 		    
-		    // Cliente 4 - Disenador Gráfico
+		    // Cliente 4 - Diseñador Gráfico
 		    clientes.add(new Cliente(4, "004-4567890-1", "Ana", "Martínez", "ana.design@creative.com", "809-555-0404"));
 		    
 		    // Cliente 5 - Streamer/Gamer
@@ -315,7 +315,7 @@ public class Tienda {
 		    // Cliente 7 - Médico
 		    clientes.add(new Cliente(7, "007-7890123-4", "Roberto", "Sánchez", "dr.sanchez@clinica.com", "829-555-0707"));
 		    
-		    // Cliente 8 - Pequeno Empresario
+		    // Cliente 8 - Pequeño Empresario
 		    clientes.add(new Cliente(8, "008-8901234-5", "Patricia", "Díaz", "paty@negocio.local", "809-555-0808"));
 		    
 		    // Cliente 9 - Estudiante de Secundaria
@@ -378,14 +378,14 @@ public class Tienda {
 		    ArrayList<DiscoDuro> discos = crearDiscosDuros();
 		    ArrayList<MemoriaRam> rams = crearMemoriasRAM();
 		    
-		    // Combo 6: Estación de Trabajo para Diseno
-		    Combo comboDiseno = new Combo(6, "Estación de Trabajo para Diseno", tarjetas.get(0), 7.0);
-		    comboDiseno.ingresarComponente(cpus.get(0)); // Ryzen 9 5950X
-		    comboDiseno.ingresarComponente(discos.get(0)); // Samsung 980 Pro 1TB NVMe
-		    comboDiseno.ingresarComponente(discos.get(3)); // Toshiba P300 1TB SATA (almacenamiento adicional)
-		    comboDiseno.ingresarComponente(rams.get(1)); // G.Skill 32GB DDR4
-		    comboDiseno.ingresarComponente(rams.get(1)); // Doble kit de RAM (total 64GB)
-		    combos.add(comboDiseno);
+		    // Combo 6: Estación de Trabajo para Diseño
+		    Combo comboDiseño = new Combo(6, "Estación de Trabajo para Diseño", tarjetas.get(0), 7.0);
+		    comboDiseño.ingresarComponente(cpus.get(0)); // Ryzen 9 5950X
+		    comboDiseño.ingresarComponente(discos.get(0)); // Samsung 980 Pro 1TB NVMe
+		    comboDiseño.ingresarComponente(discos.get(3)); // Toshiba P300 1TB SATA (almacenamiento adicional)
+		    comboDiseño.ingresarComponente(rams.get(1)); // G.Skill 32GB DDR4
+		    comboDiseño.ingresarComponente(rams.get(1)); // Doble kit de RAM (total 64GB)
+		    combos.add(comboDiseño);
 		    
 		    // Combo 7: PC para Gaming
 		    Combo comboGaming = new Combo(7, "PC Gaming de Alto Rendimiento", tarjetas.get(4), 10.0);
