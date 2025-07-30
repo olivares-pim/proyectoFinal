@@ -32,7 +32,8 @@ public class Tienda {
 		this.clientes = new ArrayList<>(); 
 		this.facturas = new ArrayList<>();
 		this.usuarios = new ArrayList<>();
-		this.usuarios.add(new Usuario("admin","1234","admin"));
+		this.usuarios.add(new Usuario("admin","1234","Admin"));
+		this.usuarios.add(new Usuario("test","1234","Registrador"));
 	}
 	public ArrayList<Componente> getComponentes() {
 		return componentes;
@@ -246,10 +247,13 @@ public class Tienda {
 		}
 		return null;
 	}
-	
+
 	public boolean login(String username, String password) {
-		Usuario check = getUserByUsername(username);
-		return check.getPassword().equals(password);
+		Usuario user = getUserByUsername(username);
+		if(user!=null) {
+			return user.getUsername().equals(username)&&user.getPassword().equals(password);
+		}
+		return false;
 	}
 
 }
