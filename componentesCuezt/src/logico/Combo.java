@@ -1,5 +1,7 @@
 package logico;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 
 public class Combo {
@@ -57,6 +59,17 @@ public class Combo {
 
 	public void setDescuentoPorciento(double descuentoPorciento) {
 		this.descuentoPorciento = descuentoPorciento;
+	}
+	
+	public double getPrecio() {
+		double precio = 0;
+		for(Componente comp : componentesCombo) {
+			precio+=comp.getPrecio();
+		}
+		double rounded = BigDecimal.valueOf(precio*(1-(descuentoPorciento/100)))
+                .setScale(2, RoundingMode.HALF_UP)
+                .doubleValue();
+		return rounded;
 	}
 	
 	@Override
