@@ -59,5 +59,10 @@ public class Combo {
 		this.descuentoPorciento = descuentoPorciento;
 	}
 	
+	@Override
+	public String toString(){
+		return descripcion + " " + descuentoPorciento + "%";
+	}
+	
 		
 }
