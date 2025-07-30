@@ -24,6 +24,7 @@ import javax.swing.JSpinner;
 import javax.swing.JTable;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.SwingConstants;
 
 public class RegFactura extends JDialog {
 
@@ -35,6 +36,7 @@ public class RegFactura extends JDialog {
 	private Object [] row;
 	private JComboBox<Combo> cboCombo;
 	private JSpinner spnCombo;
+	private JLabel lblTotalCalculado; 
 
 	/**
 	 * Launch the application
@@ -111,15 +113,30 @@ public class RegFactura extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 				
 				Componente aux = (Componente) cboComponente.getSelectedItem();
-				if(aux == null) {
-					return;
-				}
+				if(aux == null) {return;}
+				int cantidadCompNuevo = (int) spnComponente.getValue();
+		        if (cantidadCompNuevo <= 0) return;
+		        boolean found = false;
+		        for (int i = 0; i < modelo.getRowCount(); i++) {
+		            int idEval = (int) modelo.getValueAt(i, 0);
+		            if (idEval == aux.getId()) {
+		                int cantidadCompEncontrado = (int) modelo.getValueAt(i, 2);
+		                modelo.setValueAt(cantidadCompEncontrado + cantidadCompNuevo, i, 2);
+		                found = true;
+		                break;
+		            }
+		        }
+		        
+		        if (!found) {
 				row = new Object[tblDetalleFactura.getColumnCount()];
 				row[0]= aux.getId();
 				row[1]= aux.toString();
 				row[2]= spnComponente.getValue();
 				row[3]= aux.getPrecio();
 				modelo.addRow(row);
+				}
+		        spnComponente.setValue(1);
+		        calcularTotal();
 			}
 		});
 		btnAgregarComponente.setBounds(702, 11, 89, 23);
@@ -154,8 +171,17 @@ public class RegFactura extends JDialog {
 		tblDetalleFactura.setModel(modelo);
 
 		JScrollPane scrollPane = new JScrollPane(tblDetalleFactura);
-		scrollPane.setBounds(10, 77, 827, 330);
+		scrollPane.setBounds(10, 77, 827, 311);
 		contentPanel.add(scrollPane);
+		
+		JLabel lblTotal = new JLabel("Total:");
+		lblTotal.setBounds(702, 393, 46, 14);
+		contentPanel.add(lblTotal);
+		
+		lblTotalCalculado = new JLabel("$0.00");
+		lblTotalCalculado.setHorizontalAlignment(SwingConstants.TRAILING);
+		lblTotalCalculado.setBounds(747, 393, 86, 14);
+		contentPanel.add(lblTotalCalculado);
 		
 		{
 			JPanel buttonPane = new JPanel();
@@ -173,5 +199,16 @@ public class RegFactura extends JDialog {
 				buttonPane.add(cancelButton);
 			}
 		}
+	}
+
+	protected void calcularTotal() {
+		double total = 0;
+		for (int i = 0; i < modelo.getRowCount(); i++) {
+	        int cantidadComp = (Integer) modelo.getValueAt(i, 2);
+	        double precioComp = (Double) modelo.getValueAt(i, 3);
+	        total += cantidadComp * precioComp;
+	    }
+		
+		lblTotalCalculado.setText("$"+String.format("%.2f",total));
 	}
 }
