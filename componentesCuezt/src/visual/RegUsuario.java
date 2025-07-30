@@ -19,7 +19,9 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
+import Excepciones.ObjectAlreadyExistsException;
 import logico.Tienda;
+import logico.Usuario;
 
 import javax.swing.JComboBox;
 import javax.swing.JSeparator;
@@ -97,8 +99,8 @@ public class RegUsuario extends JDialog {
 		pwdPassword.setHorizontalAlignment(SwingConstants.CENTER);
 		contentPanel.add(pwdPassword);
 		
-		JButton btnLogin = new JButton("Log In");
-		btnLogin.addActionListener(new ActionListener() {
+		JButton btnRegistrar = new JButton("Registrar");
+		btnRegistrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				registrar();
 			}
@@ -115,16 +117,40 @@ public class RegUsuario extends JDialog {
 		
 		JSeparator separator = new JSeparator();
 		contentPanel.add(separator);
-		contentPanel.add(btnLogin);
+		contentPanel.add(btnRegistrar);
+		
+		JSeparator separator_1 = new JSeparator();
+		separator_1.setForeground(Color.WHITE);
+		contentPanel.add(separator_1);
+		
+		JButton btnVolver = new JButton("Volver");
+		btnVolver.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Login dialog = new Login();
+				dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+				dialog.setVisible(true);
+				dispose();
+			}
+		});
+		contentPanel.add(btnVolver);
 	}
 	protected void registrar() {
-		// TODO Auto-generated method stub
+		logico.Usuario aux = new Usuario(txtUser.getText(),pwdPassword.getText(),cboTipo.getSelectedItem().toString());
+		try {
+			Tienda.getInstance().agregarUsuario(aux);
+		} catch (ObjectAlreadyExistsException e) {
+			e.printStackTrace();
+			lblWarning.setVisible(true);
+		} finally {
+			clean();
+		}
 		
 	}
 
 	public void clean() {
 		txtUser.setText("");
 		pwdPassword.setText("");
+		cboTipo.setSelectedIndex(0);
 	}
 	}
 

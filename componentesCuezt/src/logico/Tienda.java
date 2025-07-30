@@ -33,7 +33,7 @@ public class Tienda {
 		this.facturas = new ArrayList<>();
 		this.usuarios = new ArrayList<>();
 		this.usuarios.add(new Usuario("admin","1234","Admin"));
-		this.usuarios.add(new Usuario("test","1234","Registrador"));
+		this.usuarios.add(new Usuario("root","root","Registrador"));
 	}
 	public ArrayList<Componente> getComponentes() {
 		return componentes;
