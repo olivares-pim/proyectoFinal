@@ -71,7 +71,7 @@ public class RegTarjetaMadre extends JDialog {
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		
-		JLabel lblid_componente = new JLabel("Codigo");
+		JLabel lblid_componente = new JLabel("Código");
 		lblid_componente.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblid_componente.setBounds(18, 16, 61, 16);
 		contentPanel.add(lblid_componente);
