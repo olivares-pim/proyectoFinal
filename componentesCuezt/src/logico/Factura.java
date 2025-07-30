@@ -52,11 +52,11 @@ public class Factura {
 		return combosVendidos;
 	}
 	
-	private void ingresarComponente(Componente componentaVendido) {
+	public void ingresarComponente(Componente componentaVendido) {
 		componentesVendidos.add(componentaVendido);
 	}
 	
-	private void ingresarCombo(Combo comboVendido) {
+	public void ingresarCombo(Combo comboVendido) {
 		combosVendidos.add(comboVendido);
 	}
 
