@@ -99,6 +99,11 @@ public class RegFactura extends JDialog {
 		contentPanel.add(lblComponente);
 		
 		JComboBox<Componente> cboComponente = new JComboBox<Componente>();
+		cboComponente.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cboCombo.setSelectedItem(0);
+			}
+		});
 		cboComponente.setBounds(400, 12, 236, 20);
 		contentPanel.add(cboComponente);
 		
@@ -115,10 +120,21 @@ public class RegFactura extends JDialog {
 		JButton btnAgregarComponente = new JButton("Agregar");
 		btnAgregarComponente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				cboCombo.setSelectedIndex(0);
 				Componente aux = (Componente) cboComponente.getSelectedItem();
 				if(aux == null) {return;}
-				
+//				int cantRest=aux.getCantidad()-(int)spnComponente.getValue();
+//				if(cantRest<=10 && cantRest>0) {
+//					JOptionPane.showMessageDialog(RegFactura.this, 
+//		                    aux + "casi esta agotado.", 
+//		                    "Advertencia", 
+//		                    JOptionPane.WARNING_MESSAGE);
+//				} else if (cantRest<0) {
+//					JOptionPane.showMessageDialog(RegFactura.this, 
+//		                    "No hay suficiente stock para este combo", 
+//		                    "Error", 
+//		                    JOptionPane.ERROR_MESSAGE);
+//		                return;
+//				}
 				int cantidadCompNuevo = (int) spnComponente.getValue();
 		        if (cantidadCompNuevo <= 0) return;
 		        boolean found = false;
@@ -139,6 +155,7 @@ public class RegFactura extends JDialog {
 				row[3]= aux.getPrecio();
 				modelo.addRow(row);
 				}
+		        
 		        spnComponente.setValue(1);
 		        calcularTotal();
 			}
@@ -147,6 +164,11 @@ public class RegFactura extends JDialog {
 		contentPanel.add(btnAgregarComponente);
 		
 		cboCombo = new JComboBox<Combo>();
+		cboCombo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cboComponente.setSelectedIndex(0);
+			}
+		});
 		cboCombo.setBounds(400, 43, 236, 20);
 		contentPanel.add(cboCombo);
 		
@@ -167,9 +189,23 @@ public class RegFactura extends JDialog {
 		JButton btnAgregarCombo = new JButton("Agregar");
 		btnAgregarCombo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				cboComponente.setSelectedIndex(0);
 				Combo aux = (Combo) cboCombo.getSelectedItem();
 				if(aux == null) {return;}
+//				for(Componente comp : aux.getComponentesCombo()) {
+//					int cantRest=comp.getCantidad()-(int)spnCombo.getValue();
+//					if(cantRest<=10 && cantRest>0) {
+//						JOptionPane.showMessageDialog(RegFactura.this, 
+//			                    comp + "casi esta agotado.", 
+//			                    "Advertencia", 
+//			                    JOptionPane.WARNING_MESSAGE);
+//					} else if (cantRest<0) {
+//						JOptionPane.showMessageDialog(RegFactura.this, 
+//			                    "No hay suficiente stock para este combo", 
+//			                    "Error", 
+//			                    JOptionPane.ERROR_MESSAGE);
+//			                return;
+//					}
+//				}
 				int cantidadComboNuevo = (int) spnCombo.getValue();
 		        if (cantidadComboNuevo <= 0) return;
 		        boolean found = false;
@@ -301,6 +337,7 @@ public class RegFactura extends JDialog {
 	        int cantidadComp = (Integer) modelo.getValueAt(i, 2);
 	        double precioComp = (Double) modelo.getValueAt(i, 3);
 	        total += cantidadComp * precioComp;
+	        
 	    }
 		
 		lblTotalCalculado.setText("$"+String.format("%.2f",total));
