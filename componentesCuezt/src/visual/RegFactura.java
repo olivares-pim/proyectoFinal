@@ -211,7 +211,7 @@ public class RegFactura extends JDialog {
 		        boolean found = false;
 		        for (int i = 0; i < modelo.getRowCount(); i++) {
 		            int idEval = (int) modelo.getValueAt(i, 0);
-		            if (idEval == aux.getId()) {
+		            if (idEval == aux.getId()&& modelo.getValueAt(i, 1).equals(aux.toString())) {
 		                int cantidadComboEncontrado = (int) modelo.getValueAt(i, 2);
 		                modelo.setValueAt(cantidadComboEncontrado + cantidadComboNuevo, i, 2);
 		                found = true;
