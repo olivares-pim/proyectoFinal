@@ -16,6 +16,8 @@ import logico.Tienda;
 
 import javax.swing.JTable;
 import javax.swing.ScrollPaneConstants;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class ListarFactura extends JDialog {
 
@@ -57,7 +59,6 @@ public class ListarFactura extends JDialog {
 		{
 			tblFacturas = new JTable();
 			modelo = new DefaultTableModel();
-			contentPanel.add(tblFacturas);
 			String[] headers = {"ID", "Cliente", "Fecha", "Total"};
 			modelo.setColumnIdentifiers(headers);
 			tblFacturas.setModel(modelo);
@@ -68,15 +69,14 @@ public class ListarFactura extends JDialog {
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				JButton okButton = new JButton("OK");
-				okButton.setActionCommand("OK");
-				buttonPane.add(okButton);
-				getRootPane().setDefaultButton(okButton);
-			}
-			{
-				JButton cancelButton = new JButton("Cancel");
-				cancelButton.setActionCommand("Cancel");
-				buttonPane.add(cancelButton);
+				JButton btnCerrar = new JButton("Cerrar");
+				btnCerrar.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						dispose();
+					}
+				});
+				btnCerrar.setActionCommand("Cancel");
+				buttonPane.add(btnCerrar);
 			}
 		}
 		loadFacturas();
