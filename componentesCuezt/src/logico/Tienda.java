@@ -125,24 +125,17 @@ public class Tienda {
 	    } else {
 	    	this.facturas.add(nuevaFactura);
 	        for(Componente comp : nuevaFactura.getComponentesVendidos()) {
-	        	actualizarCantidadProducto(comp);
+	        	comp.setCantidad(comp.getCantidad()-1);
 	        }
 	        for(Combo combo : nuevaFactura.getCombosVendidos()) {
 	        	for(Componente comp : combo.getComponentesCombo()) {
-	        		actualizarCantidadProducto(comp);
+	        		comp.setCantidad(comp.getCantidad()-1);
 	        	}
 	        }
 	        this.generadorFactura++;
 	        
 	    }
 	    
-	}
-
-	public void actualizarCantidadProducto(Componente compVendido) {
-		Componente compAlmacenado = getComponente(compVendido);
-		if(compAlmacenado !=null){
-			compAlmacenado.setCantidad(compAlmacenado.getCantidad()-compVendido.getCantidad());
-			}
 	}
 	
 	public boolean existeCombo(Combo comboEval) {
