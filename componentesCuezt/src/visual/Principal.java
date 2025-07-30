@@ -13,7 +13,7 @@ public class Principal extends JFrame {
         setTitle("Tienda Tecnológica");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
-        setLayout(new BorderLayout());
+        getContentPane().setLayout(new BorderLayout());
         dim = getToolkit().getScreenSize();
 		setSize(dim.width/2,dim.height/2);
 		setLocationRelativeTo(null);
@@ -26,14 +26,21 @@ public class Principal extends JFrame {
 
         // Botones del menu
         JButton btnHome = new JButton("Home");
-        JButton btnVentas = new JButton("Ventas");
+        JButton btnFactura = new JButton("Facturas");
+        btnFactura.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		RegFactura fact = new RegFactura();
+        		fact.setModal(true);
+        		fact.setVisible(true);
+        	}
+        });
         JButton btnClientes = new JButton("Clientes");
         JButton btnComponentes = new JButton("Componentes");
         JButton btnCombos = new JButton("Combos");
 
         // Agregar botones al panel del menu
         panelMenu.add(btnHome);
-        panelMenu.add(btnVentas);
+        panelMenu.add(btnFactura);
         panelMenu.add(btnClientes);
         panelMenu.add(btnComponentes);
         panelMenu.add(btnCombos);
@@ -47,14 +54,14 @@ public class Principal extends JFrame {
 
         // Acciones de los botones
         btnHome.addActionListener(e -> cambiarVista("Bienvenido a la Tienda"));
-        btnVentas.addActionListener(e -> cambiarVista("Sección de Ventas"));
+        
         btnClientes.addActionListener(e -> cambiarVista("Gestión de Clientes"));
         btnComponentes.addActionListener(e -> cambiarVista("Gestión de Componentes"));
         btnCombos.addActionListener(e -> cambiarVista("Sección de Combos"));
 
         // Agregar paneles a la ventana
-        add(panelMenu, BorderLayout.WEST);
-        add(panelContenido, BorderLayout.CENTER);
+        getContentPane().add(panelMenu, BorderLayout.WEST);
+        getContentPane().add(panelContenido, BorderLayout.CENTER);
     }
 
     // M�todo para cambiar el texto del centro
