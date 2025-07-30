@@ -43,8 +43,11 @@ public class Tienda {
 	}
 	public ArrayList<Factura> getFacturas() {
 		return facturas;
+	}	
+	public ArrayList<Combo> getCombos() {
+		return combos;
 	}
-	
+
 	public boolean existeComponente(Componente componenteBuscado) {
 		for(Componente componente : componentes){
 	        if(componenteBuscado.getNumeroSerie().equalsIgnoreCase(componente.getNumeroSerie())){

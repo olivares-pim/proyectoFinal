@@ -49,4 +49,9 @@ public class Cliente {
 		return id_cliente;
 	}
 	
+	@Override
+	public String toString() {
+		return nombre + " " + apellido;
+	}
+	
 }

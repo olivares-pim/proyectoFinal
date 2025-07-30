@@ -7,14 +7,31 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
+
+import logico.Cliente;
+import logico.Combo;
+import logico.Componente;
+import logico.Tienda;
+
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import java.awt.Color;
+import java.awt.Dimension;
+import javax.swing.JComboBox;
+import javax.swing.JSpinner;
+import javax.swing.JTable;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class RegFactura extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private JTextField txtCodigo;
+	private Dimension dim=null;
+	private JTable tblDetalleFactura;
+	private DefaultTableModel modelo;
+	private Object [] row;
 
 	/**
 	 * Launch the application
@@ -33,27 +50,96 @@ public class RegFactura extends JDialog {
 	 * Create the dialog.
 	 */
 	public RegFactura() {
-		setBounds(100, 100, 450, 300);
+		setTitle("Registrar Factura");
+		dim = getToolkit().getScreenSize();
+		setSize(dim.width/3,dim.height/3);
+		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setResizable(false);
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		
-		JLabel lblCodigo = new JLabel("Codigo");
-		lblCodigo.setBounds(10, 11, 46, 14);
+		JLabel lblCodigo = new JLabel("Codigo:");
+		lblCodigo.setBounds(60, 15, 46, 14);
 		contentPanel.add(lblCodigo);
 		
 		txtCodigo = new JTextField();
 		txtCodigo.setEditable(false);
-		txtCodigo.setBounds(66, 8, 86, 20);
+		txtCodigo.setBounds(116, 12, 86, 20);
 		contentPanel.add(txtCodigo);
 		txtCodigo.setColumns(10);
-		{
-			JPanel panel = new JPanel();
-			panel.setBackground(Color.RED);
-			panel.setBounds(0, 32, 434, 196);
-			contentPanel.add(panel);
+		
+		JLabel lblCliente = new JLabel("Cliente:");
+		lblCliente.setBounds(60, 46, 46, 14);
+		contentPanel.add(lblCliente);
+		
+		JComboBox<Cliente> cboCliente = new JComboBox<Cliente>();
+		cboCliente.setBounds(116, 43, 153, 20);
+		contentPanel.add(cboCliente);
+		
+		//Agregar todos los clientes al combobox
+//		cboCliente.addItem(null);
+//		for(Cliente cliente : Tienda.getInstance().getClientes()) {
+//			cboCliente.addItem(cliente);
+//		}
+		
+		JLabel lblComponente = new JLabel("Componente:");
+		lblComponente.setBounds(312, 15, 78, 14);
+		contentPanel.add(lblComponente);
+		
+		JComboBox<Componente> cboComponente = new JComboBox<Componente>();
+		cboComponente.setBounds(400, 12, 236, 20);
+		contentPanel.add(cboComponente);
+		
+		//Agregar todo los componentes al combobox
+		cboComponente.addItem(null);
+		for(Componente componente : Tienda.getInstance().getComponentes()) {
+			cboComponente.addItem(componente);
 		}
+		
+		JSpinner spnComponente = new JSpinner();
+		spnComponente.setBounds(646, 12, 46, 20);
+		contentPanel.add(spnComponente);
+		
+		JButton btnAgregarComponente = new JButton("Agregar");
+		btnAgregarComponente.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		btnAgregarComponente.setBounds(702, 11, 89, 23);
+		contentPanel.add(btnAgregarComponente);
+		
+		JComboBox<Combo> cboCombo = new JComboBox<Combo>();
+		cboCombo.setBounds(400, 43, 236, 20);
+		contentPanel.add(cboCombo);
+		
+		//Agregar todos los combos al combobox
+		cboCombo.addItem(null);
+		for(Combo combo : Tienda.getInstance().getCombos()) {
+			cboCombo.addItem(combo);
+		}
+		
+		JLabel lblCombo = new JLabel("Combo:");
+		lblCombo.setBounds(312, 46, 78, 14);
+		contentPanel.add(lblCombo);
+		
+		JSpinner spnCombo = new JSpinner();
+		spnCombo.setBounds(646, 43, 46, 20);
+		contentPanel.add(spnCombo);
+		
+		JButton btnAgregarCombo = new JButton("Agregar");
+		btnAgregarCombo.setBounds(702, 42, 89, 23);
+		contentPanel.add(btnAgregarCombo);
+		
+		tblDetalleFactura = new JTable();
+		tblDetalleFactura.setBounds(10, 77, 827, 330);
+		modelo = new DefaultTableModel();
+		String [] headers = {"Codigo","Nombre","Cantidad","Precio"};
+		modelo.setColumnIdentifiers(headers);
+		tblDetalleFactura.setModel(modelo);
+		contentPanel.add(tblDetalleFactura);
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));

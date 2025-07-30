@@ -117,7 +117,6 @@ public class Login extends JDialog {
 		contentPanel.add(btnLogin);
 	}
 	public void clean() {
-		txtUser.setText("");
 		pwdPassword.setText("");
 	}
 	
