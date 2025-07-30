@@ -295,34 +295,34 @@ public class Tienda {
 		    ArrayList<Cliente> clientes = new ArrayList<>();
 		    
 		    // Cliente 1 - Profesional TI
-		    clientes.add(new Cliente(1, "001-1234567-8", "Juan", "Pérez", "juan.perez@email.com", "809-555-0101"));
+		    clientes.add(new Cliente(1, "001-1234567-8", "Juan", "Pï¿½rez", "juan.perez@email.com", "809-555-0101"));
 		    
 		    // Cliente 2 - Estudiante Universitario
-		    clientes.add(new Cliente(2, "002-2345678-9", "María", "García", "maria.garcia@universidad.edu", "809-555-0202"));
+		    clientes.add(new Cliente(2, "002-2345678-9", "Marï¿½a", "Garcï¿½a", "maria.garcia@universidad.edu", "809-555-0202"));
 		    
 		    // Cliente 3 - Empresario
-		    clientes.add(new Cliente(3, "003-3456789-0", "Carlos", "Rodríguez", "c.rodriguez@empresa.com", "809-555-0303"));
+		    clientes.add(new Cliente(3, "003-3456789-0", "Carlos", "Rodrï¿½guez", "c.rodriguez@empresa.com", "809-555-0303"));
 		    
-		    // Cliente 4 - Diseñador Gráfico
-		    clientes.add(new Cliente(4, "004-4567890-1", "Ana", "Martínez", "ana.design@creative.com", "809-555-0404"));
+		    // Cliente 4 - Diseï¿½ador Grï¿½fico
+		    clientes.add(new Cliente(4, "004-4567890-1", "Ana", "Martï¿½nez", "ana.design@creative.com", "809-555-0404"));
 		    
 		    // Cliente 5 - Streamer/Gamer
-		    clientes.add(new Cliente(5, "005-5678901-2", "Luis", "Hernández", "luis.gamer@stream.tv", "829-555-0505"));
+		    clientes.add(new Cliente(5, "005-5678901-2", "Luis", "Hernï¿½ndez", "luis.gamer@stream.tv", "829-555-0505"));
 		    
 		    // Cliente 6 - Profesor
-		    clientes.add(new Cliente(6, "006-6789012-3", "Sofía", "López", "profe.sofia@escuela.edu", "809-555-0606"));
+		    clientes.add(new Cliente(6, "006-6789012-3", "Sofï¿½a", "Lï¿½pez", "profe.sofia@escuela.edu", "809-555-0606"));
 		    
-		    // Cliente 7 - Médico
-		    clientes.add(new Cliente(7, "007-7890123-4", "Roberto", "Sánchez", "dr.sanchez@clinica.com", "829-555-0707"));
+		    // Cliente 7 - Mï¿½dico
+		    clientes.add(new Cliente(7, "007-7890123-4", "Roberto", "Sï¿½nchez", "dr.sanchez@clinica.com", "829-555-0707"));
 		    
-		    // Cliente 8 - Pequeño Empresario
-		    clientes.add(new Cliente(8, "008-8901234-5", "Patricia", "Díaz", "paty@negocio.local", "809-555-0808"));
+		    // Cliente 8 - Pequeï¿½o Empresario
+		    clientes.add(new Cliente(8, "008-8901234-5", "Patricia", "Dï¿½az", "paty@negocio.local", "809-555-0808"));
 		    
 		    // Cliente 9 - Estudiante de Secundaria
-		    clientes.add(new Cliente(9, "009-9012345-6", "Miguel", "Fernández", "mike.f@estudiante.edu", "829-555-0909"));
+		    clientes.add(new Cliente(9, "009-9012345-6", "Miguel", "Fernï¿½ndez", "mike.f@estudiante.edu", "829-555-0909"));
 		    
 		    // Cliente 10 - Jubilado
-		    clientes.add(new Cliente(10, "010-0123456-7", "Ramona", "Gómez", "ramona.gomez@jubilada.com", "809-555-1010"));
+		    clientes.add(new Cliente(10, "010-0123456-7", "Ramona", "Gï¿½mez", "ramona.gomez@jubilada.com", "809-555-1010"));
 		    
 		    return clientes;
 		}
@@ -378,14 +378,14 @@ public class Tienda {
 		    ArrayList<DiscoDuro> discos = crearDiscosDuros();
 		    ArrayList<MemoriaRam> rams = crearMemoriasRAM();
 		    
-		    // Combo 6: Estación de Trabajo para Diseño
-		    Combo comboDiseño = new Combo(6, "Estación de Trabajo para Diseño", tarjetas.get(0), 7.0);
-		    comboDiseño.ingresarComponente(cpus.get(0)); // Ryzen 9 5950X
-		    comboDiseño.ingresarComponente(discos.get(0)); // Samsung 980 Pro 1TB NVMe
-		    comboDiseño.ingresarComponente(discos.get(3)); // Toshiba P300 1TB SATA (almacenamiento adicional)
-		    comboDiseño.ingresarComponente(rams.get(1)); // G.Skill 32GB DDR4
-		    comboDiseño.ingresarComponente(rams.get(1)); // Doble kit de RAM (total 64GB)
-		    combos.add(comboDiseño);
+		    // Combo 6: Estaciï¿½n de Trabajo para Diseï¿½o
+		    Combo comboDiseno = new Combo(6, "Estaciï¿½n de Trabajo para Diseï¿½o", tarjetas.get(0), 7.0);
+		    comboDiseno.ingresarComponente(cpus.get(0)); // Ryzen 9 5950X
+		    comboDiseno.ingresarComponente(discos.get(0)); // Samsung 980 Pro 1TB NVMe
+		    comboDiseno.ingresarComponente(discos.get(3)); // Toshiba P300 1TB SATA (almacenamiento adicional)
+		    comboDiseno.ingresarComponente(rams.get(1)); // G.Skill 32GB DDR4
+		    comboDiseno.ingresarComponente(rams.get(1)); // Doble kit de RAM (total 64GB)
+		    combos.add(comboDiseno);
 		    
 		    // Combo 7: PC para Gaming
 		    Combo comboGaming = new Combo(7, "PC Gaming de Alto Rendimiento", tarjetas.get(4), 10.0);
@@ -396,7 +396,7 @@ public class Tienda {
 		    combos.add(comboGaming);
 		    
 		    // Combo 8: Oficina/Economico
-		    Combo comboOficina = new Combo(8, "PC de Oficina Económico", tarjetas.get(2), 15.0);
+		    Combo comboOficina = new Combo(8, "PC de Oficina Econï¿½mico", tarjetas.get(2), 15.0);
 		    comboOficina.ingresarComponente(cpus.get(6)); // Ryzen 5 5500
 		    comboOficina.ingresarComponente(discos.get(5)); // Kingston A400 480GB M.2 SATA
 		    comboOficina.ingresarComponente(rams.get(5)); // Team Group 16GB DDR4

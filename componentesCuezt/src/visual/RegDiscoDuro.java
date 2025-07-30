@@ -31,7 +31,7 @@ public class RegDiscoDuro extends JDialog {
 	private JTextField txtCodigo;
 	private JTextField txtNumSerie;
 	private JTextField txtMarca;
-	private JTextField textField;
+	private JTextField txtAlmacenamiento;
 	private JTextField txtPrecio;
 	private JTextField txtCantidad;
 	private JTable table;
@@ -119,11 +119,11 @@ public class RegDiscoDuro extends JDialog {
 		lblAlmacenamiento.setBounds(159, 16, 103, 16);
 		contentPanel.add(lblAlmacenamiento);
 		
-		textField = new JTextField();
-		textField.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		textField.setColumns(10);
-		textField.setBounds(258, 11, 77, 26);
-		contentPanel.add(textField);
+		txtAlmacenamiento = new JTextField();
+		txtAlmacenamiento.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		txtAlmacenamiento.setColumns(10);
+		txtAlmacenamiento.setBounds(258, 11, 77, 26);
+		contentPanel.add(txtAlmacenamiento);
 		
 		JLabel lblNewLabel = new JLabel("GB");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
