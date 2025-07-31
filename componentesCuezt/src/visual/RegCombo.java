@@ -7,8 +7,11 @@ import java.awt.FlowLayout;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
 
+import logico.Combo;
 import logico.DiscoDuro;
 import logico.MemoriaRam;
 import logico.Microprocesador;
@@ -17,6 +20,8 @@ import logico.Tienda;
 
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.ScrollPaneConstants;
+
 import java.awt.Font;
 import javax.swing.JSeparator;
 import javax.swing.JComboBox;
@@ -24,6 +29,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JSpinner;
+import javax.swing.JTable;
 
 public class RegCombo extends JDialog {
 
@@ -34,6 +40,9 @@ public class RegCombo extends JDialog {
 	private ArrayList<MemoriaRam> rams = Tienda.getInstance().getMemoriasRam();
 	private ArrayList<Microprocesador> cpus = Tienda.getInstance().getMicroProcesadores();
 	private ArrayList<DiscoDuro> hdds = Tienda.getInstance().getDiscosDuros();
+	private JTextField txtDescripcion;
+	private JTable tblCombos;
+	private DefaultTableModel modelo;
 	
 
 	/**
@@ -101,12 +110,12 @@ public class RegCombo extends JDialog {
 		for(MemoriaRam ram : rams) {
 			cboRAM.addItem(ram);
 		}
-		cboRAM.setBounds(402, 90, 133, 20);
+		cboRAM.setBounds(406, 90, 129, 20);
 		contentPanel.add(cboRAM);
 		
 		
 		JLabel lblHDD = new JLabel("Disco Duro");
-		lblHDD.setBounds(306, 45, 98, 14);
+		lblHDD.setBounds(20, 138, 98, 14);
 		contentPanel.add(lblHDD);
 		
 		JComboBox<DiscoDuro> cboHDD = new JComboBox();
@@ -114,11 +123,11 @@ public class RegCombo extends JDialog {
 		for(DiscoDuro hdd : hdds) {
 			cboHDD.addItem(hdd);
 		}
-		cboHDD.setBounds(402, 45, 133, 20);
+		cboHDD.setBounds(141, 135, 133, 20);
 		contentPanel.add(cboHDD);
 		
 		JLabel lblMicroProcesador = new JLabel("MicroProcesador");
-		lblMicroProcesador.setBounds(547, 45, 98, 14);
+		lblMicroProcesador.setBounds(306, 138, 98, 14);
 		contentPanel.add(lblMicroProcesador);
 		
 		JComboBox<Microprocesador> cboCPU = new JComboBox();
@@ -126,16 +135,37 @@ public class RegCombo extends JDialog {
 		for(Microprocesador cpu : cpus) {
 			cboCPU.addItem(cpu);
 		}
-		cboCPU.setBounds(667, 45, 133, 20);
+		cboCPU.setBounds(406, 135, 129, 20);
 		contentPanel.add(cboCPU);
 		
 		JLabel lblDescuento = new JLabel("Descuento %");
-		lblDescuento.setBounds(547, 93, 75, 14);
+		lblDescuento.setBounds(575, 45, 75, 14);
 		contentPanel.add(lblDescuento);
 		
-		JSpinner spinner = new JSpinner();
-		spinner.setBounds(667, 87, 133, 20);
-		contentPanel.add(spinner);
+		JSpinner spnDescuento = new JSpinner();
+		spnDescuento.setBounds(662, 42, 133, 20);
+		contentPanel.add(spnDescuento);
+		
+		JLabel lblDescripcion = new JLabel("Descripcion");
+		lblDescripcion.setBounds(306, 44, 98, 16);
+		contentPanel.add(lblDescripcion);
+		
+		txtDescripcion = new JTextField();
+		txtDescripcion.setBounds(406, 41, 129, 22);
+		contentPanel.add(txtDescripcion);
+		txtDescripcion.setColumns(10);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		contentPanel.add(scrollPane,BorderLayout.CENTER);
+		
+		tblCombos = new JTable();
+		modelo = new DefaultTableModel();
+		String[] headers = {"ID", "Descripcion","Precio"};
+		modelo.setColumnIdentifiers(headers);
+		tblCombos.setModel(modelo);
+		scrollPane.setViewportView(tblCombos);
+		
 		
 		//Actulizacion de ComboBoxes segun Mobo
 		
@@ -183,6 +213,19 @@ public class RegCombo extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton btnCrear = new JButton("Crear");
+				btnCrear.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						TarjetaMadre seleccionTM = (TarjetaMadre) cboTarjetaMadre.getSelectedItem();
+						Object value = spnDescuento.getValue();
+						double descuento = Double.parseDouble(value.toString());
+						if(seleccionTM==null) {
+							Combo comboAux = new Combo(Integer.parseInt(txtCodigo.getText()),"Combo "+lblDescripcion.getText(),descuento);
+						} else {
+							Combo comboAux = new Combo(Integer.parseInt(txtCodigo.getText()),"Combo "+lblDescripcion.getText(),seleccionTM,descuento);
+						}
+						
+					}
+				});
 				btnCrear.setActionCommand("OK");
 				buttonPane.add(btnCrear);
 				getRootPane().setDefaultButton(btnCrear);
@@ -194,7 +237,4 @@ public class RegCombo extends JDialog {
 			}
 		}
 	}
-	
-	
-	
 }
