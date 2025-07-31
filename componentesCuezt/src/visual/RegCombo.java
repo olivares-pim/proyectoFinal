@@ -165,7 +165,7 @@ public class RegCombo extends JDialog {
 		modelo.setColumnIdentifiers(headers);
 		tblCombos.setModel(modelo);
 		scrollPane.setViewportView(tblCombos);
-		
+		loadCombos();
 		
 		//Actulizacion de ComboBoxes segun Mobo
 		
@@ -236,5 +236,16 @@ public class RegCombo extends JDialog {
 				buttonPane.add(btnCancelar);
 			}
 		}
+	}
+	private void loadCombos() {
+	    modelo.setRowCount(0);
+	    for(Combo combo : Tienda.getInstance().getCombos()) {
+	        Object[] row = {
+	            combo.getId(),
+	            combo.getDescripcion(),
+	            combo.getPrecio()
+	        };
+	        modelo.addRow(row);
+	    }
 	}
 }
